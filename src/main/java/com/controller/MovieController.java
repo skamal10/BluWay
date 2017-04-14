@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.model.Movie;
 import com.service.MovieService;
+import util.Constants.MovieErrors;
 
 @Controller
 	@SessionAttributes("Movie")
-	public class HelloWorldController {
+	public class MovieController {
 
 		 @Autowired
 		 private MovieService movieService;
@@ -23,8 +24,10 @@ import com.service.MovieService;
 		 
 		@RequestMapping(value="movie/{movieName}", method = RequestMethod.GET)
 		 public @ResponseBody String getMovie(@PathVariable("movieName") String movieName) {
+			
 			Movie test =  movieService.getMovieByName(movieName);
-			return test.getName();
+			return test != null ? test.getName() : MovieErrors.MOVIE_NOT_FOUND;
+			
 		}
 		
 		@RequestMapping(value="movie/all", method = RequestMethod.GET)
