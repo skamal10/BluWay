@@ -23,7 +23,13 @@ import com.service.MovieService;
 		 
 		@RequestMapping(value="movie/{movieName}", method = RequestMethod.GET)
 		 public @ResponseBody String getMovie(@PathVariable("movieName") String movieName) {
-			List<Movie> test =  movieService.getMovieByUserName(movieName);
-			return test.get(0).getName();
+			Movie test =  movieService.getMovieByName(movieName);
+			return test.getName();
+		}
+		
+		@RequestMapping(value="movie/all", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getAllMovies() {
+			List<Movie> movies =  movieService.getAllMovies();
+			return movies;
 		}
 	}

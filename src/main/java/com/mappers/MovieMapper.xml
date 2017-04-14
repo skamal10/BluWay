@@ -18,4 +18,9 @@
     <select id="selectAll" resultMap="result">
         SELECT * FROM Movie;
     </select>
+    
+    <select id="selectByName" resultMap="result">
+        SELECT * FROM Movie WHERE Name = #{name};
+    </select>
+    
 </mapper>

@@ -14,8 +14,14 @@ public class MovieService {
 	 private MovieMapper movieMapper;
 	
 	
-	 public List<Movie> getMovieByUserName(String movieName){
+	 public List<Movie> getAllMovies(){
 		 List<Movie> movie = movieMapper.selectAll();
 		 return movie;
 	 }
+	 
+	 public Movie getMovieByName(String movieName){
+		 Movie movie = movieMapper.selectByName(movieName);
+		 return movie;
+	 }
+	 
 }
