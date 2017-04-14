@@ -1,0 +1,4 @@
+com/mappers/MovieMapper.class
+com/model/Movie.class
+com/controller/HelloWorldController.class
+com/service/MovieService.class

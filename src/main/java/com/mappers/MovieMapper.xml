@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.mappers.MovieMapper">
+ 
+    <resultMap id="result" type="Movie">
+        <result property="id" column="Id"/>
+        <result property="name" column="Name"/>
+        <result property="type" column="Type"/>   
+        <result property="rating" column="Rating"/>   
+        <result property="distributionFee" column="DistrFee"/> 
+        <result property="numCopies" column="NumCopies"/> 
+             
+    </resultMap>
+ 
+    <select id="selectAll" resultMap="result">
+        SELECT * FROM Movie;
+    </select>
+</mapper>
