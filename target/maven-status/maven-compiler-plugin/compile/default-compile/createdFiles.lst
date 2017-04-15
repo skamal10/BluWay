@@ -1,4 +1,6 @@
 com/mappers/MovieMapper.class
 com/model/Movie.class
-com/controller/HelloWorldController.class
+util/Constants$MovieErrors.class
 com/service/MovieService.class
+util/Constants.class
+com/controller/MovieController.class
