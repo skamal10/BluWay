@@ -41,4 +41,9 @@ public class MovieService {
 		 }
 		 
 	 }
+
+	 public List<Movie> getMoviesByGenre(String type){
+		 List<Movie> movies = movieMapper.selectMoviesByType(type);
+		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
+	 }
 }

@@ -23,6 +23,11 @@
         SELECT * FROM Movie WHERE Name = #{name};
     </select>
     
+    <select id="selectMoviesByType" resultMap = "result">
+    	SELECT * FROM Movie 
+    	WHERE Type = #{type};
+     </select>
+    
     <update id="updateByPrimaryKey">
     	UPDATE Movie
     	<set>
@@ -49,6 +54,7 @@
 		WHERE Customer.Id = #{customerId}
 		AND Orders.ReturnDate IS NULL;
     </select>
+     
     <insert id="insertMovie">
     INSERT INTO Movie(Name,Type,Rating,DistrFee,NumCopies)
     VALUES(#{movie.name}, #{movie.type}, #{movie.rating}, #{movie.distributionFee}, #{movie.numCopies});

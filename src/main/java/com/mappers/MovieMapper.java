@@ -14,5 +14,6 @@ public interface MovieMapper {
 	  public List<Movie> selectMoviesHistoryByCustomerId(@Param("customerId")Integer customerId);
 	  public void updateByPrimaryKey(@Param("movie")Movie movie);
 	  public void insertMovie(@Param("movie") Movie movie);
+	  public List<Movie> selectMoviesByType(@Param("type") String type);
 	  
 }

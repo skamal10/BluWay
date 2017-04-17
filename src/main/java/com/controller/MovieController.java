@@ -57,4 +57,18 @@ import util.Constants.MovieErrors;
 			return movieService.insertMovie(newMovie);
 			
 		}
+		
+		@RequestMapping(value="movie/type/{genre}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getMovieByGenre(@PathVariable("genre") String genre) {
+			try{
+				return movieService.getMoviesByGenre(genre);
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
+		
 	}
