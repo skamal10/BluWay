@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,19 @@ public class MovieService {
 		 return movie;
 	 }
 	 
+	 public List<Movie> getMovieHistory(Integer customerId){
+		 List<Movie> movieHistory = movieMapper.selectMoviesHistoryByCustomerId(customerId);
+		 return movieHistory;
+	 }
+	 
+	 public boolean insertMovie(Movie movie){
+		 try{
+			 movieMapper.insertMovie(movie);
+			 return true;
+		 }
+		 catch(Exception e){
+			 return false;
+		 }
+		 
+	 }
 }

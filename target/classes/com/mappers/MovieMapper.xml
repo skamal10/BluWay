@@ -23,4 +23,35 @@
         SELECT * FROM Movie WHERE Name = #{name};
     </select>
     
+    <update id="updateByPrimaryKey">
+    	UPDATE Movie
+    	<set>
+    	<if test= "name!=null"> Name = #{name},</if>
+    	<if test= "type!=null"> Type = #{type},</if>
+    	<if test= "rating!=null"> Rating = #{rating},</if>
+    	<if test= "distributionFee!=null"> DistrFee = #{distributionFee},</if>
+    	<if test= "numCopies ! = null"> NumCopies = #{numCopies},</if>
+    	</set>
+    	WHERE Id = #{id};
+    </update>
+    
+    <select id="selectMoviesHistoryByCustomerId" resultMap = "result">
+    	SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies 
+    	FROM Customer 
+		LEFT JOIN Account
+		ON Customer.Id = Account.Customer
+		LEFT JOIN Rental
+		ON Account.Id = Rental.AccountId
+		LEFT JOIN Movie
+		ON Rental.MovieId = Movie.Id
+		LEFT JOIN Orders
+		ON Rental.OrderId = Orders.Id
+		WHERE Customer.Id = #{customerId}
+		AND Orders.ReturnDate IS NULL;
+    </select>
+    <insert id="insertMovie">
+    INSERT INTO Movie(Id,Name,Type,Rating,DistrFee,NumCopies)
+    VALUES(#{id}, #{name}, #{type}, #{rating}, #{distributionFee}, #{numCopies});
+    </insert>
+    
 </mapper>

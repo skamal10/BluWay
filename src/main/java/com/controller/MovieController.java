@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import util.Constants.MovieErrors;
 		 @Autowired
 		 private MovieService movieService;
 		 
-		 
+		 // Get movie by name
 		@RequestMapping(value="movie/{movieName}", method = RequestMethod.GET)
 		 public @ResponseBody String getMovie(@PathVariable("movieName") String movieName) {
 			
@@ -30,9 +31,29 @@ import util.Constants.MovieErrors;
 			
 		}
 		
+		// Get a list of all movies
 		@RequestMapping(value="movie/all", method = RequestMethod.GET)
 		 public @ResponseBody List<Movie> getAllMovies() {
 			List<Movie> movies =  movieService.getAllMovies();
 			return movies;
+		}
+		
+		@RequestMapping(value="movie/history/{customerId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getMovieHistory(@PathVariable("customerId") Integer customerId) {
+			List<Movie> movieHistory =  movieService.getMovieHistory(customerId);
+			
+			if(movieHistory!=null){
+				return movieHistory;
+			}
+			else{
+				// return an empty list if the history is null
+				return new ArrayList<Movie>(); 
+			}
+		}
+		@RequestMapping(value="movie/add", method = RequestMethod.GET)
+		 public @ResponseBody boolean getMovieHistory(@PathVariable("newMovie") Movie newMovie) {
+				
+			return movieService.insertMovie(newMovie);
+			
 		}
 	}

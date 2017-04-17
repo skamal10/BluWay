@@ -10,7 +10,7 @@
   </head>
   <body ng-app="bluWay">
   <div>
-  <h1>MAIN</h1>
+  <h1>Movies</h1>
   </div>
   <div ng-controller = 'MovieCtrl'>
           <ul ng-repeat="movie in movies">
