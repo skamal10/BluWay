@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,8 +51,8 @@ import util.Constants.MovieErrors;
 				return new ArrayList<Movie>(); 
 			}
 		}
-		@RequestMapping(value="movie/add", method = RequestMethod.GET)
-		 public @ResponseBody boolean getMovieHistory(@PathVariable("newMovie") Movie newMovie) {
+		@RequestMapping(value="movie/add", method = RequestMethod.POST)
+		 public @ResponseBody boolean addMovie(@RequestBody Movie newMovie) {
 				
 			return movieService.insertMovie(newMovie);
 			

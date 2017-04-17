@@ -26,13 +26,13 @@
     <update id="updateByPrimaryKey">
     	UPDATE Movie
     	<set>
-    	<if test= "name!=null"> Name = #{name},</if>
-    	<if test= "type!=null"> Type = #{type},</if>
-    	<if test= "rating!=null"> Rating = #{rating},</if>
-    	<if test= "distributionFee!=null"> DistrFee = #{distributionFee},</if>
-    	<if test= "numCopies ! = null"> NumCopies = #{numCopies},</if>
+    	<if test= "name!=null"> Name = #{movie.name},</if>
+    	<if test= "type!=null"> Type = #{movie.type},</if>
+    	<if test= "rating!=null"> Rating = #{movie.rating},</if>
+    	<if test= "distributionFee!=null"> DistrFee = #{movie.distributionFee},</if>
+    	<if test= "numCopies ! = null"> NumCopies = #{movie.numCopies},</if>
     	</set>
-    	WHERE Id = #{id};
+    	WHERE Id = #{movie.id};
     </update>
     
     <select id="selectMoviesHistoryByCustomerId" resultMap = "result">
@@ -50,8 +50,8 @@
 		AND Orders.ReturnDate IS NULL;
     </select>
     <insert id="insertMovie">
-    INSERT INTO Movie(Id,Name,Type,Rating,DistrFee,NumCopies)
-    VALUES(#{id}, #{name}, #{type}, #{rating}, #{distributionFee}, #{numCopies});
+    INSERT INTO Movie(Name,Type,Rating,DistrFee,NumCopies)
+    VALUES(#{movie.name}, #{movie.type}, #{movie.rating}, #{movie.distributionFee}, #{movie.numCopies});
     </insert>
     
 </mapper>
