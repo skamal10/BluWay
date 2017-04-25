@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    <mapper namespace="com.mappers.CustomerMapper">
+    
+    <resultMap id="result" type="Customer">
+        <result property="id" column="Id"/>  
+        <result property="rating" column="Rating"/>   
+        <result property="email" column="Email"/> 
+        <result property="creditCardNumber" column="CreditCardNumber"/> 
+             
+    </resultMap>
+    
+     <resultMap id="result" type="Person">
+     
+     
+           <result property="firstName" column="FirstName"/>
+           <result property="lastName" column="LastName"/> 
+    	   <result property="address" column="Address"/> 
+    	 	<result property="zipCode" column="ZipCode"/> 
+    		<result property="telephone" column="Telephone"/> 
+    		
+    		
+       </resultMap>
+    
+        <select id="selectAll" resultMap="result">
+        SELECT * FROM Customer;
+    </select>
+    
+    
+    <update id="updateCustomerById">
+    	UPDATE Customer
+    	<set>
+    	<if test= "firstName !=null"> FirstName = #{customer.firstName},</if>
+    	<if test= "lastName !=null"> LastName = #{customer.lastName},</if>
+    	<if test= "address !=null"> Address = #{customer.address},</if>
+    	<if test= "zipCode !=null"> ZipCode = #{customer.zipCode},</if>
+    	<if test= "telephone !=null"> Telephone = #{customer.telephone},</if>
+    	<if test= "rating !=null"> Rating = #{customer.rating},</if>
+    	<if test= "email != null"> Email = #{customer.email},</if>
+    	<if test= "creditCardNumber !=null"> CreditCardNumber = #{customer.creditCardNumber},</if>
+    	</set>
+    	WHERE Id = #{customer.id};
+    
+    </update>
+    
+        <insert id="insertCustomer">
+    INSERT INTO Customer(FirstName, LastName, Address, ZipCode, Telephone,Rating, Id, Email, CreditCardNumber)
+    VALUES(#{person.firstName}, #{person.lastName}, #{person.Address}, #{person.zipCode}, #{person.telephone},    #{customer.rating}, #{customer.id}, #{customer.email}, #{customer.creditCardNumber});
+    </insert>
+    
+        <select id="selectById" resultMap="result">
+        SELECT * FROM Customer WHERE Id = #{id};
+    </select>
+    
+    
+    
+    <select id="mostActive" resultMap="result">
+    SELECT Person.FirstName
+    FROM Person 
+	INNER JOIN Account
+	ON Person.Id = Account.Customer 
+	INNER JOIN Rental
+	ON Account.Id= Rental.AccountId
+	GROUP BY FirstName 
+	ORDER BY COUNT(*) DESC
+	LIMIT 2;
+    
+    </select>
+    
+    
+    
+    
+    <select id="currentMovies" resultMap="result">
+    
+    SELECT Movie.Name 
+    FROM Customer 
+    LEFT JOIN Account
+    ON Customer.Id = Account.Customer 
+    LEFT JOIN Rental 
+    ON Account.Id= Rental.AccountId
+    LEFT JOIN Movie 
+    ON Rental.MovieId=Movie.Id
+    LEFT JOIN Order
+    ON Rental.OrderId =Order.Id
+    WHERE Customer.Id= #{id}
+    AND Order.ReturnDate IS NULL
+    
+    
+  
+    </select>
+    
+    
+    
+    <select id="currentMovies" resultMap="result">
+    
+    SELECT Movie.name
+    FROM MovieQ
+    INNERJOIN Movie
+    ON MovieQ.MovieId= Movie.Id
+    WHERE AccountId=#{id}
+    
+
+    </select>
+    
+    
+    <select id="pastOrders" resultMap="result">
+    
+    SELECT Order.DateTime , OrderId AS ORDER_ID , Movie.Name
+    FROM Customer
+    LEFT JOIN Account 
+    ON Customer.Id = Account.Customer
+    LEFT JOIN Rental
+    ON Account.ID = Rental.AccountId
+    LEFT JOIN Movie
+    ON Rental.MovieId = Movie.Id
+    LEFT JOIN Order
+    ON Rental.OrderId= Order.Id
+    WHERE Customer.Id = #{id}
+    AND Order.ReturnDate IS NULL
+    
+  
+    </select>
+    
+    </mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    <mapper namespace="com.mappers.EmployeeMapper">
+    
+      <resultMap id="result" type="Person">
+           <result property="firstName" column="FirstName"/>
+           <result property="lastName" column="LastName"/> 
+    	   <result property="address" column="Address"/> 
+    	 	<result property="zipCode" column="ZipCode"/> 
+    		<result property="telephone" column="Telephone"/> 
+    		      </resultMap>
+      
+      
+       <resultMap id="result" type="Employee">
+        <result property="startDate" column="StartDate"/>  
+        <result property="hourlyRate" column="HourlyRate"/>         
+    </resultMap>
+      
+      
+      
+              <select id="selectById" resultMap="result">
+        SELECT * FROM Employee WHERE Id = #{id};
+    </select>
+      
+      
+      <update id="updateEmployeeById">
+    	UPDATE Employee
+    	<set>
+    	<if test= "firstName !=null"> FirstName = #{employee.firstName},</if>
+    	<if test= "lastName !=null"> LastName = #{employee.lastName},</if>
+    	<if test= "address !=null"> Address = #{employee.address},</if>
+    	<if test= "zipCode !=null"> ZipCode = #{employee.zipCode},</if>
+    	<if test= "telephone !=null"> Telephone = #{employee.telephone},</if>
+    	<if test= "startDate !=null"> StartDate = #{employee.startDate},</if>
+    	<if test= "hourlyRate != null"> HourlyRate = #{employee.hourlyRate},</if>
+    	</set>
+    	WHERE Id = #{employee.id};
+    
+    </update>
+    
+      
+           <insert id="insertEmployee">
+    INSERT INTO Employee(FirstName, LastName, Address, ZipCode, Telephone,HourlyRate, Id, StartDate)
+    VALUES(#{person.firstName}, #{person.lastName}, #{person.Address}, #{person.zipCode}, #{person.telephone},    #{employee.hourlyRate}, #{employee.id}, #{employee.startDate});
+    </insert>
+    
+      
+      
+      
+           <select id="selectAll" resultMap="result">
+        SELECT * FROM Employee;
+    </select>
+      
+      
+          </mapper>
