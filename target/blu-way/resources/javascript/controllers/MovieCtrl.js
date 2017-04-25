@@ -1,27 +1,21 @@
 'use strict';
 
-angular.module('bluWay', []).controller('MovieCtrl', function ($scope) {
+angular.module('bluWay', []).controller('MovieCtrl', function ($scope,$http) {
    
-$scope.posts = [
-  'post 1',
-  'post 2',
-  'post 3',
-  'post 4',
-  'post 5'
-];
-
-loadMovies();
+$scope.movies = [];
 
 $scope.loadMovies = function(){
 
 	$http({
           method  : 'GET',
-          url     : '/movie/all',
+          url     : '/blu-way/movie/all',
          })
           .success(function(data) {
-          		alert(data.status);
+          		$scope.movies = data.slice();
           });
 };
+
+$scope.loadMovies();
 
 $scope.display = true;
 

@@ -10,11 +10,12 @@
   </head>
   <body ng-app="bluWay">
   <div>
-  <h1>MAIN</h1>
+  <h1>Movies</h1>
   </div>
   <div ng-controller = 'MovieCtrl'>
-          <ul ng-repeat="post in posts">
-            <li ng-show= "display">{{post}}</li>
+          <ul ng-repeat="movie in movies">
+            <li>Name : {{movie.name}}</li>
+            <li>Rating: {{movie.rating}}</li>
           </ul>
   </div>
 </body>
