@@ -17,17 +17,17 @@ public class CustomerService {
 	  private CustomerMapper customerMapper;
 	  
 	  
-	  public List<Customer> getAllCustomers(){
-		  List <Customer> customer= customerMapper.selectAll();
-		  return customer;
-	  }
-	  
-	  public Customer getCustomerByID(int id){
+	  public Customer getCustomerByID(Integer id){
 		  Customer customer= customerMapper.selectById(id);
 		  return customer;
 		  
 	  }
 	  
+	  public List<Customer> getAllCustomers(){
+		  List <Customer> customer= customerMapper.selectAll();
+		  return customer;
+	  }
+  
 	  public boolean addCustomer(Customer customer){
 			 try{
 				 customerMapper.insertCustomer(customer);

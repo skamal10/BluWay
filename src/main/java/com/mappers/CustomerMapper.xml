@@ -11,24 +11,34 @@
         <result property="rating" column="Rating"/>   
         <result property="email" column="Email"/> 
         <result property="creditCardNumber" column="CreditCardNumber"/> 
-             
-    </resultMap>
-    
-     <resultMap id="result" type="Person">
-     
-     
            <result property="firstName" column="FirstName"/>
            <result property="lastName" column="LastName"/> 
     	   <result property="address" column="Address"/> 
     	 	<result property="zipCode" column="ZipCode"/> 
     		<result property="telephone" column="Telephone"/> 
-    		
-    		
-       </resultMap>
+             
+    </resultMap>
     
-        <select id="selectAll" resultMap="result">
+    <select id="selectAll" resultMap="result">
         SELECT * FROM Customer;
     </select>
+       
+      <select id="selectById" resultMap="result">
+        SELECT * 
+        FROM Customer 
+        INNER JOIN Person
+        ON Customer.Id=Person.SSN
+        WHERE Customer.Id = 111111111;
+    </select>
+    
+      
+        <insert id="insertCustomer">
+    INSERT INTO Customer(FirstName, LastName, Address, ZipCode, Telephone,Rating, Id, Email, CreditCardNumber)
+    VALUES(#{person.firstName}, #{person.lastName}, #{person.Address}, #{person.zipCode}, #{person.telephone},    #{customer.rating}, #{customer.id}, #{customer.email}, #{customer.creditCardNumber});
+    </insert>
+ 
+          
+    
     
     
     <update id="updateCustomerById">
@@ -46,17 +56,7 @@
     	WHERE Id = #{customer.id};
     
     </update>
-    
-        <insert id="insertCustomer">
-    INSERT INTO Customer(FirstName, LastName, Address, ZipCode, Telephone,Rating, Id, Email, CreditCardNumber)
-    VALUES(#{person.firstName}, #{person.lastName}, #{person.Address}, #{person.zipCode}, #{person.telephone},    #{customer.rating}, #{customer.id}, #{customer.email}, #{customer.creditCardNumber});
-    </insert>
-    
-        <select id="selectById" resultMap="result">
-        SELECT * FROM Customer WHERE Id = #{id};
-    </select>
-    
-    
+  
     
     <select id="mostActive" resultMap="result">
     SELECT Person.FirstName
@@ -95,7 +95,7 @@
     
     
     
-    <select id="currentMovies" resultMap="result">
+    <select id="customerQueue" resultMap="result">
     
     SELECT Movie.name
     FROM MovieQ
@@ -124,5 +124,5 @@
     
   
     </select>
-    
+       
     </mapper>

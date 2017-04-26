@@ -7,18 +7,16 @@
     
     <mapper namespace="com.mappers.EmployeeMapper">
     
-      <resultMap id="result" type="Person">
-           <result property="firstName" column="FirstName"/>
-           <result property="lastName" column="LastName"/> 
-    	   <result property="address" column="Address"/> 
-    	 	<result property="zipCode" column="ZipCode"/> 
-    		<result property="telephone" column="Telephone"/> 
-    		      </resultMap>
-      
       
        <resultMap id="result" type="Employee">
         <result property="startDate" column="StartDate"/>  
-        <result property="hourlyRate" column="HourlyRate"/>         
+        <result property="hourlyRate" column="HourlyRate"/>  
+        
+               <result property="firstName" column="FirstName"/>
+           <result property="lastName" column="LastName"/> 
+    	   <result property="address" column="Address"/> 
+    	 	<result property="zipCode" column="ZipCode"/> 
+    		<result property="telephone" column="Telephone"/>        
     </resultMap>
       
       

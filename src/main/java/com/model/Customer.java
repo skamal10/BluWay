@@ -6,7 +6,7 @@ public class Customer extends Person {
 	private String email;
 	private int creditCardNumber;
 	private int rating;
-	
+
 	
 	
 
@@ -32,6 +32,14 @@ public class Customer extends Person {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+	
+	public void setId(int id){
+		super.setSSN(id);
+	}
+	
+	public int getId(){
+		return super.getSSN();
 	}
 
 	@Override

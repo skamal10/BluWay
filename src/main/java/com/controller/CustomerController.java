@@ -38,13 +38,12 @@ public class CustomerController {
 	 
 	 // Get customer by id
 	@RequestMapping(value="customer/{id}", method = RequestMethod.GET)
-	 public @ResponseBody String getCustomer(@PathVariable("id") Integer id) {
+	 public @ResponseBody Customer getCustomer(@PathVariable("id") Integer id) {
 		
-		
-		return "OKAY";
-		//Customer test = customerService.getCustomerByID(id);
-		//return (String) (test != null ? test.getSSN() : CustomerErrors.CUSTOMER_NOT_FOUND);
-		
+		//return "OKAY";
+		Customer test = customerService.getCustomerByID(id);
+		//return (test != null ? test.getId(): -1);
+		return test;
 	}
 	
 	

@@ -27,9 +27,9 @@ import util.Constants.MovieErrors;
 		@RequestMapping(value="movie/{movieName}", method = RequestMethod.GET)
 		 public @ResponseBody String getMovie(@PathVariable("movieName") String movieName) {
 			
-			return "OKAY";
-			//Movie test =  movieService.getMovieByName(movieName);
-			//return test != null ? test.getName() : MovieErrors.MOVIE_NOT_FOUND;
+	
+			Movie test =  movieService.getMovieByName(movieName);
+			return test != null ? test.getName() : MovieErrors.MOVIE_NOT_FOUND;
 			
 		}
 		
