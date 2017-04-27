@@ -12,7 +12,7 @@ public interface CustomerMapper {
 	public List<Customer> selectAll();
 	public void updateCustomerById(@Param("id")Integer id);
 	public void insertCustomer(@Param("customer") Customer customer); 
-	public Customer selectById(@Param("id")Integer id);
+	public Customer selectById(@Param("SSN")Long SSN);
 	
 	//Produce a list of most active customers DONE
 	public List<Customer> mostActive();

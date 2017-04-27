@@ -27,13 +27,13 @@ public class Employee extends Person {
 	}
 
 	@Override
-	public int getSSN() {
+	public Long getSSN() {
 		// TODO Auto-generated method stub
 		return super.getSSN();
 	}
 
 	@Override
-	public void setSSN(int sSN) {
+	public void setSSN(Long sSN) {
 		// TODO Auto-generated method stub
 		super.setSSN(sSN);
 	}
@@ -87,13 +87,13 @@ public class Employee extends Person {
 	}
 
 	@Override
-	public int getTelephone() {
+	public String getTelephone() {
 		// TODO Auto-generated method stub
 		return super.getTelephone();
 	}
 
 	@Override
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		// TODO Auto-generated method stub
 		super.setTelephone(telephone);
 	}

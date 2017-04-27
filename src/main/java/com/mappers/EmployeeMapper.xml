@@ -11,17 +11,16 @@
        <resultMap id="result" type="Employee">
         <result property="startDate" column="StartDate"/>  
         <result property="hourlyRate" column="HourlyRate"/>  
-        
-               <result property="firstName" column="FirstName"/>
-           <result property="lastName" column="LastName"/> 
-    	   <result property="address" column="Address"/> 
-    	 	<result property="zipCode" column="ZipCode"/> 
-    		<result property="telephone" column="Telephone"/>        
+        <result property="firstName" column="FirstName"/>
+        <result property="lastName" column="LastName"/> 
+    	<result property="address" column="Address"/> 
+    	<result property="zipCode" column="ZipCode"/> 
+    	<result property="telephone" column="Telephone"/>        
     </resultMap>
       
       
       
-              <select id="selectById" resultMap="result">
+     <select id="selectById" resultMap="result">
         SELECT * FROM Employee WHERE SSN = #{SSN};
     </select>
       

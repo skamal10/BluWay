@@ -3,19 +3,19 @@ package com.model;
 public class Person {
 	
 	
-private int SSN;
+private Long SSN;
 private String firstName;
 private String lastName;
 private String address;
 private int zipCode;
-private int telephone;
+private String telephone;
 
 
 
-public int getSSN() {
+public Long getSSN() {
 	return SSN;
 }
-public void setSSN(int sSN) {
+public void setSSN(Long sSN) {
 	SSN = sSN;
 }
 public String getFirstName() {
@@ -42,10 +42,10 @@ public int getZipCode() {
 public void setZipCode(int zipCode) {
 	this.zipCode = zipCode;
 }
-public int getTelephone() {
+public String getTelephone() {
 	return telephone;
 }
-public void setTelephone(int telephone) {
+public void setTelephone(String telephone) {
 	this.telephone = telephone;
 }
 

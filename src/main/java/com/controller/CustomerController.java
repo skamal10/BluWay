@@ -38,7 +38,7 @@ public class CustomerController {
 	 
 	 // Get customer by id
 	@RequestMapping(value="customer/{id}", method = RequestMethod.GET)
-	 public @ResponseBody Customer getCustomer(@PathVariable("id") Integer id) {
+	 public @ResponseBody Customer getCustomer(@PathVariable("id") Long id) {
 		
 	
 		Customer test = customerService.getCustomerByID(id);

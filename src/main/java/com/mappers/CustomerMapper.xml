@@ -7,15 +7,15 @@
     <mapper namespace="com.mappers.CustomerMapper">
     
     <resultMap id="result" type="Customer">
-        <result property="id" column="Id"/>  
+    	<result property="SSN"  column="SSN"/>
         <result property="rating" column="Rating"/>   
         <result property="email" column="Email"/> 
         <result property="creditCardNumber" column="CreditCardNumber"/> 
-           <result property="firstName" column="FirstName"/>
-           <result property="lastName" column="LastName"/> 
-    	   <result property="address" column="Address"/> 
-    	 	<result property="zipCode" column="ZipCode"/> 
-    		<result property="telephone" column="Telephone"/> 
+         <result property="firstName" column="FirstName"/>
+         <result property="lastName" column="LastName"/> 
+    	 <result property="address" column="Address"/> 
+    	 <result property="zipCode" column="ZipCode"/> 
+    	 <result property="telephone" column="Telephone"/> 
              
     </resultMap>
     
@@ -28,11 +28,11 @@
     </select>
        
       <select id="selectById" resultMap="result">
-        SELECT * 
-        FROM Customer 
+        SELECT SSN, Email, Rating, CreditCardNumber, LastName, FirstName,Address, ZipCode, Telephone
+        FROM Customer
         INNER JOIN Person
         ON Customer.Id=Person.SSN
-        WHERE Customer.Id = #{id};
+        WHERE Customer.Id = #{SSN}
     </select>
     
       

@@ -17,7 +17,7 @@ public class CustomerService {
 	  private CustomerMapper customerMapper;
 	  
 	  
-	  public Customer getCustomerByID(Integer id){
+	  public Customer getCustomerByID(Long id){
 		  Customer customer= customerMapper.selectById(id);
 		  return customer;
 		  
