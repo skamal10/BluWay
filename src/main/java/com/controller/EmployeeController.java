@@ -34,15 +34,47 @@ public class EmployeeController {
 	
 	 
 	 // Get employee by id
-	@RequestMapping(value="employee/{id}", method = RequestMethod.GET)
-	 public @ResponseBody String getEmplpyee(@PathVariable("id") Integer id) {
+	@RequestMapping(value="employee/{SSN}", method = RequestMethod.GET)
+	 public @ResponseBody Employee getEmployee(@PathVariable("SSN") Integer SSN) {
 		
 
 		
-		Employee test = employeeService.getEmployeeByID(id);
-		return (String) (test != null ? test.getSSN() : EmployeeErrors.EMPLOYEE_NOT_FOUND);
+		Employee test = employeeService.getEmployeeByID(SSN);
+		return test;
+		
+	}
+	
+
+	
+	 // Get all employee
+	@RequestMapping(value="employee/all", method = RequestMethod.GET)
+	 public @ResponseBody List<Employee> selectAll() {
+		
+
+		List<Employee> test = employeeService.getAllEmployees();
+	
+		return test;
+	}
+	
+	
+	 // Add employee
+	@RequestMapping(value="employee/add", method = RequestMethod.POST)
+	boolean addEmployee(@RequestBody Employee newEmployee) {
+		
+		return employeeService.addEmployee(newEmployee);
 		
 	}
 	
 	
+	 // Most Active
+	@RequestMapping(value="employee/mostActive", method = RequestMethod.GET)
+	 public @ResponseBody Employee mostActive() {
+		
+
+		Employee test = employeeService.mostActive();
+	
+		return test;
+	}
+	
+
 }

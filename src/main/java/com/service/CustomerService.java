@@ -69,4 +69,12 @@ public class CustomerService {
 		  return movie;
 	  }
 	  
+	  
+
+	  public List<Movie> customerQueue(int id){
+		  List<Movie> movie= customerMapper.customerQueue(id);
+		  return movie;
+	  }
+	  
+	  
 }

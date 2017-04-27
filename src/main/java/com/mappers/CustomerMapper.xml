@@ -20,7 +20,11 @@
     </resultMap>
     
     <select id="selectAll" resultMap="result">
-        SELECT * FROM Customer;
+        SELECT * 
+        FROM Customer 
+        INNER JOIN Person
+        ON Customer.Id=Person.SSN
+   
     </select>
        
       <select id="selectById" resultMap="result">
@@ -28,7 +32,7 @@
         FROM Customer 
         INNER JOIN Person
         ON Customer.Id=Person.SSN
-        WHERE Customer.Id = 111111111;
+        WHERE Customer.Id = #{id};
     </select>
     
       
@@ -62,7 +66,7 @@
     SELECT Person.FirstName
     FROM Person 
 	INNER JOIN Account
-	ON Person.Id = Account.Customer 
+	ON Person.SSN = Account.Customer 
 	INNER JOIN Rental
 	ON Account.Id= Rental.AccountId
 	GROUP BY FirstName 
@@ -84,10 +88,10 @@
     ON Account.Id= Rental.AccountId
     LEFT JOIN Movie 
     ON Rental.MovieId=Movie.Id
-    LEFT JOIN Order
-    ON Rental.OrderId =Order.Id
+    LEFT JOIN Orders
+    ON Rental.OrderId =Orders.Id
     WHERE Customer.Id= #{id}
-    AND Order.ReturnDate IS NULL
+    AND Orders.ReturnDate IS NULL
     
     
   
@@ -97,19 +101,22 @@
     
     <select id="customerQueue" resultMap="result">
     
-    SELECT Movie.name
+
+    
+    
+      SELECT Movie.name
     FROM MovieQ
-    INNERJOIN Movie
+    INNER JOIN Movie
     ON MovieQ.MovieId= Movie.Id
     WHERE AccountId=#{id}
-    
 
     </select>
     
     
     <select id="pastOrders" resultMap="result">
     
-    SELECT Order.DateTime , OrderId AS ORDER_ID , Movie.Name
+    SELECT Orders.DateTime , Orders.Id
+    AS ORDER_ID , Movie.Name
     FROM Customer
     LEFT JOIN Account 
     ON Customer.Id = Account.Customer
@@ -117,12 +124,14 @@
     ON Account.ID = Rental.AccountId
     LEFT JOIN Movie
     ON Rental.MovieId = Movie.Id
-    LEFT JOIN Order
-    ON Rental.OrderId= Order.Id
+    LEFT JOIN Orders
+    ON Rental.OrderId= Orders.Id
     WHERE Customer.Id = #{id}
-    AND Order.ReturnDate IS NULL
+
     
-  
+    
+    
+    
     </select>
        
     </mapper>

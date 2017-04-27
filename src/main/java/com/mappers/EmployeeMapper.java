@@ -11,9 +11,9 @@ public interface EmployeeMapper {
 
 	
 	public List<Employee> selectAll();
-	public void updateEmployeeById(@Param("id")Integer id);
+	public void updateEmployeeById(@Param("SSN")Integer SSN); //Skipped
 	public void insertEmployee(@Param("employee") Employee employee); 
-	public Employee selectById(@Param("id")Integer id);
+	public Employee selectById(@Param("SSN")Integer SSN);
 	
 	public Employee mostActive(); 
 	// Determine which customer representative oversaw the most transactions (rentals)

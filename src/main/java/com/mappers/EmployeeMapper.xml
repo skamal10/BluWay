@@ -22,7 +22,7 @@
       
       
               <select id="selectById" resultMap="result">
-        SELECT * FROM Employee WHERE Id = #{id};
+        SELECT * FROM Employee WHERE SSN = #{SSN};
     </select>
       
       
@@ -37,7 +37,7 @@
     	<if test= "startDate !=null"> StartDate = #{employee.startDate},</if>
     	<if test= "hourlyRate != null"> HourlyRate = #{employee.hourlyRate},</if>
     	</set>
-    	WHERE Id = #{employee.id};
+    	WHERE SSN = #{employee.SSN};
     
     </update>
     
@@ -55,4 +55,16 @@
     </select>
       
       
+      <select id="mostActive" resultMap="result">
+      
+      SELECT FirstName
+      FROM Person
+      INNER JOIN Employee
+      ON Person.SSN= Employee.SSN
+      INNER JOIN Rental
+      ON Employee.ID= Rental.CustRepID
+      GROUP BY FirstName
+      ORDER BY COUNT(*) DESC
+      LIMIT 1 
+        </select>
           </mapper>

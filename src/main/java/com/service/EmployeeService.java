@@ -23,8 +23,14 @@ public class EmployeeService {
 		  return employee;
 	  }
 	  
-	  public Employee getEmployeeByID(int id){
-		  Employee employee= employeeMapper.selectById(id);
+	  public Employee getEmployeeByID(int SSN){
+		  Employee employee= employeeMapper.selectById(SSN);
+		  return employee;
+		  
+	  }
+	  
+	  public Employee mostActive(){
+		  Employee employee= employeeMapper.mostActive();
 		  return employee;
 		  
 	  }
@@ -44,9 +50,9 @@ public class EmployeeService {
 	  }
 	  
 	  
-	  public boolean updateEmployee(int id){
+	  public boolean updateEmployee(int SSN){
 		  try{
-		  employeeMapper.updateEmployeeById(id);
+		  employeeMapper.updateEmployeeById(SSN);
 		  return true;
 		  }
 			 catch(Exception e){
