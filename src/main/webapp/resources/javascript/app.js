@@ -2,7 +2,7 @@
 
 
 angular.
-module('bluWay', []).
+module('bluWay', ['ngMaterial']).
   config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -43,9 +43,25 @@ public class MovieService {
 		 }
 		 
 	 }
+	 
+	 public List<Integer> getHomeScreenMovies(){
+		 try{
+			 List<Integer> movies = movieMapper.selectHomeScreenMovies();
+			 return movies;
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return null;
+		 }
+	 }
 
 	 public List<Movie> getMoviesByGenre(String type){
 		 List<Movie> movies = movieMapper.selectMoviesByType(type);
+		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
+	 }
+	 
+	 public List<Movie> getMovieQ(Integer accountId){
+		 List<Movie> movies = movieMapper.selectMovieQueue(accountId);
 		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
 	 }
 }

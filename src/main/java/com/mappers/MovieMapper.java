@@ -15,5 +15,7 @@ public interface MovieMapper {
 	  public void updateByPrimaryKey(@Param("movie")Movie movie);
 	  public void insertMovie(@Param("movie") Movie movie);
 	  public List<Movie> selectMoviesByType(@Param("type") String type);
+	  public List<Integer> selectHomeScreenMovies();
+	  public List<Movie> selectMovieQueue(@Param("id") Integer id);
 	  
 }

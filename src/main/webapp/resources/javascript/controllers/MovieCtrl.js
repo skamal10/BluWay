@@ -2,20 +2,48 @@
 
 angular.module('bluWay', []).controller('MovieCtrl', function ($scope,$http) {
    
-$scope.movies = [];
+$scope.topMovies = [];
+$scope.isAdmin = false;
+$scope.currentNavItem = 'page1';
+$scope.loggedInAccount = 1;
 
-$scope.loadMovies = function(){
+$('.carousel-control').click(function(e){
+	  e.preventDefault();
+	});
+
+
+var init = function(){
+	loadFavoriteGenres();
+	loadTopMovies();
+}
+
+
+var loadFavoriteGenres = function(){
+	
+}
+
+var loadTopMovies = function(){
 
 	$http({
           method  : 'GET',
-          url     : '/blu-way/movie/all',
+          url     : '/blu-way/movie/homescreen',
          })
           .success(function(data) {
-          		$scope.movies = data.slice();
+          		$scope.topMovies = data.slice();
           });
 };
 
-$scope.loadMovies();
+var loadMovieQueue = function(){
+	$http({
+        method  : 'GET',
+        url     : '/blu-way/movie/queue/'+$scope.loggedInAccount,
+       })
+        .success(function(data) {
+        		$scope.movieQ = data.slice();
+        });
+}
+
+init();
 
 $scope.display = true;
 

@@ -72,4 +72,30 @@ import util.Constants.MovieErrors;
 			
 		}
 		
+		@RequestMapping(value="movie/queue/{accountId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getCustomerMovieQ(@PathVariable("accountId") Integer accountId) {
+			try{
+				return movieService.getMovieQ(accountId);
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
+		
+		@RequestMapping(value="movie/homescreen", method = RequestMethod.GET)
+		 public @ResponseBody List<Integer> getHomeScreenMovies() {
+			try{
+				return movieService.getHomeScreenMovies();
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
+		
 	}

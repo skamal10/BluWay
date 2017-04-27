@@ -27,6 +27,19 @@
     	SELECT * FROM Movie 
     	WHERE Type = #{type};
      </select>
+     
+     <select id="selectHomeScreenMovies" resultType="integer">
+     	SELECT Id FROM Movie
+     	WHERE Featured = 1;
+     </select>
+     
+     <select id="selectMovieQueue" resultMap="result">
+     SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies
+     FROM MovieQ
+     INNER JOIN Movie
+     ON MovieQ.MovieId = Movie.Id
+     WHERE AccountId = #{id}
+     </select>
     
     <update id="updateByPrimaryKey">
     	UPDATE Movie
