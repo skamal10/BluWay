@@ -30,41 +30,34 @@
 
 <div class="panel panel-default panel-custom">
   <div class="panel-heading">
-    <h3 class="panel-title">Panel title</h3>
+    <h3 class="panel-title">Movie Queue</h3>
   </div>
   <div class="panel-body">
     <div class="movieList">
     <ul class="list-inline list-in">
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
-        </li>
-        <li class="movieItem">
-            <span>Test Data1</span>
+        <li ng-repeat = "movies in movieQ" class="movieItem">
+            <span>{{movies.name}}</span>
         </li>
     </ul>
 </div>
   </div>
+</div>
+
+<div ng-repeat= "favoriteMovies in topGenres">
+<div class="panel panel-default panel-custom" ng-if ="favoriteMovies.length>0">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{favoriteMovies[0].type}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="movieList">
+    <ul class="list-inline list-in">
+        <li ng-repeat = "movies in favoriteMovies" class="movieItem">
+            <span>{{movies.name}}</span>
+        </li>
+    </ul>
+</div>
+  </div>
+</div>
 </div>
 
 

@@ -13,6 +13,7 @@ app.controller('MovieViewCtrl', function ($scope,$http, $routeParams) {
 	          .success(function(data) {
 	        	  if(data!=null){
 	        		  $scope.movie = data;  
+	        		  console.log($scope.movie);
 	        	  }
 	          });
 	};
