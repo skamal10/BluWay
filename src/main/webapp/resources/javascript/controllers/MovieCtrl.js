@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bluWay', []).controller('MovieCtrl', function ($scope,$http) {
+app.controller('MovieCtrl', function ($scope, $http) {
    
 $scope.topMovies = [];
 $scope.isAdmin = false;
@@ -26,7 +26,7 @@ var loadTopMovies = function(){
 
 	$http({
           method  : 'GET',
-          url     : '/blu-way/movie/homescreen',
+          url     : '/movie/homescreen',
          })
           .success(function(data) {
           		$scope.topMovies = data.slice();
@@ -36,7 +36,7 @@ var loadTopMovies = function(){
 var loadMovieQueue = function(){
 	$http({
         method  : 'GET',
-        url     : '/blu-way/movie/queue/'+$scope.loggedInAccount,
+        url     : '/movie/queue/'+$scope.loggedInAccount,
        })
         .success(function(data) {
         		$scope.movieQ = data.slice();

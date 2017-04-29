@@ -21,7 +21,12 @@ public class MovieService {
 		 List<Movie> movie = movieMapper.selectAll();
 		 return movie;
 	 }
-
+	 
+	 public Movie getMovieById(Integer id){
+		Movie movie = movieMapper.selectById(id);
+		return movie;
+	 }
+	 
 	 public Movie getMovieByName(String movieName){
 		 Movie movie = movieMapper.selectByName(movieName);
 		 return movie;

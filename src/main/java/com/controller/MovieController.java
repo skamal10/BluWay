@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -24,13 +26,20 @@ import util.Constants.MovieErrors;
 		 private MovieService movieService;
 		 
 		 // Get movie by name
-		@RequestMapping(value="movie/{movieName}", method = RequestMethod.GET)
+		@RequestMapping(value="movie/name/{movieName}", method = RequestMethod.GET)
 		 public @ResponseBody String getMovie(@PathVariable("movieName") String movieName) {
 			
 	
 			Movie test =  movieService.getMovieByName(movieName);
 			return test != null ? test.getName() : MovieErrors.MOVIE_NOT_FOUND;
 			
+		}
+		
+		@RequestMapping(value="movie/{movieId}", method = RequestMethod.GET)
+		 public @ResponseBody Movie getMovieById(@PathVariable("movieId") Integer movieId) {
+			Movie movie=  movieService.getMovieById(movieId);
+			return movie;
+		
 		}
 		
 		// Get a list of all movies
@@ -98,7 +107,6 @@ import util.Constants.MovieErrors;
 			}
 			
 		}
-
 		// Get a list of all movies the actor appeared 
 		@RequestMapping(value="movie/actor/{actorName}", method = RequestMethod.POST)
 		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorName") String actorName) {
@@ -107,5 +115,12 @@ import util.Constants.MovieErrors;
 			System.out.println("In the controller"+movies.getClass().getName());
 			return new ArrayList<Movie>();
 		}
-		
+		 @RequestMapping("/")
+		    public String homePage() {
+			 return "index";
+		 }
+		 @RequestMapping("/template/{view}")
+		    public String greeting(@PathVariable("view") String view) {
+			 return view;
+		    }
 	}

@@ -55,8 +55,6 @@ dropdown-menu .sub-menu {
 
 .movieList
 {
-	margin-top: 50px;
-	margin-bottom: 30px;
     overflow-x:scroll;
     overflow-y:hidden;
     height:200px;
@@ -71,7 +69,9 @@ dropdown-menu .sub-menu {
     height:200px;
     width: 300px;
 }
-
+.panel-custom{
+	margin-top: 20px;
+}
 .list-in {
   white-space:nowrap;
 }
