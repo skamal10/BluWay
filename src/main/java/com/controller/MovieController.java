@@ -106,6 +106,19 @@ import util.Constants.MovieErrors;
 			}
 			
 		}
+		
+		@RequestMapping(value="movie/favoriteGenres/{accountId}", method = RequestMethod.GET)
+		 public @ResponseBody List<List<Movie>> getFavoriteGenres(@PathVariable("accountId") Integer accountId) {
+			try{
+				return movieService.getMoviesFromGenreCollection(accountId);
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
 
 		 @RequestMapping("/")
 		    public String homePage() {

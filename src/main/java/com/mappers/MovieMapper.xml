@@ -70,6 +70,108 @@
 		WHERE Customer.Id = #{customerId}
 		AND Orders.ReturnDate IS NULL;
     </select>
+    
+    <select id="selectUserFavoriteGenres" resultType="String">
+ 		SELECT Type FROM Movie
+    		INNER JOIN Rental
+    		On Rental.MovieId = Movie.Id
+    		WHERE AccountId= #{accountId}
+        	GROUP BY Type
+        	ORDER BY COUNT(*)
+        	LIMIT 5;
+    </select>
+    
+    <select id="selectSystemFavoriteGenres" resultType="String">
+ 		SELECT Type FROM Movie
+    		INNER JOIN Rental
+    		On Rental.MovieId = Movie.Id
+        	GROUP BY Type
+        	ORDER BY COUNT(*)
+        	LIMIT 5;
+    </select>
+    
+    <select id="selectPersonalizedList" resultMap= "result">
+    
+    SELECT movie.id ,movie.Name, movie.Type, movie.Rating, movie.DistrFee, movie.NumCopies FROM Netflix_db.Movie AS movie
+			INNER JOIN
+			(
+			SELECT movie1.Type
+			FROM  Netflix_db.Movie AS movie1
+			LEFT JOIN Netflix_db.Rental AS rental1
+			ON movie1.Id = rental1.MovieId
+			INNER JOIN Netflix_db.Account AS account
+			ON rental1.AccountId= account.Id
+			WHERE account.Customer =  #{customerId}
+			GROUP BY movie1.Type
+			ORDER BY COUNT(*) DESC
+			LIMIT 3
+			) as type2
+			ON movie.Type = type2.Type
+			
+			
+			UNION 
+			
+			SELECT movies.id ,movies.Name, movies.Type, movies.Rating, movies.DistrFee, movies.NumCopies FROM Netflix_db.Movie AS movies
+			LEFT JOIN Netflix_db.AppearedIn  AS appeared
+			ON movies.Id =  appeared.MovieId
+			INNER JOIN(
+			    
+			    SELECT ActorId
+			    FROM Netflix_db.Rental AS rental
+			    INNER JOIN Netflix_db.AppearedIn AS appeared1
+			    ON rental.MovieId = appeared1.MovieId
+			    WHERE AccountId= ( SELECT Account.Id FROM Account WHERE Account.Customer = #{customerId})
+			    GROUP BY ActorId
+			    ORDER BY Count(*) DESC
+			    LIMIT 3
+			) as actor1
+			ON appeared.ActorId= actor1.ActorId
+			
+			UNION
+			
+			SELECT mov.id ,mov.Name, mov.Type, mov.Rating, mov.DistrFee, mov.NumCopies FROM Netflix_db.Movie AS mov
+			INNER JOIN Netflix_db.Rental AS rent
+			ON mov.Id = rent.MovieId
+			INNER JOIN Netflix_db.Account AS acc
+			ON rent.AccountId = acc.Id
+			WHERE acc.Customer = #{customerId}
+			AND rent.MovieRating >=4
+			
+			
+			UNION 
+			
+			
+			SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies FROM Account
+			INNER JOIN(
+			SELECT customer.Id AS custId FROM Netflix_db.Customer AS customer
+			LEFT JOIN Netflix_db.Person AS person
+			ON customer.Id = person.SSN
+			INNER JOIN Netflix_db.Location AS location
+			ON person.ZipCode = location.ZipCode
+			WHERE location.ZipCode = 
+			
+			(SELECT location.ZipCode FROM Netflix_db.Location location
+			INNER JOIN Netflix_db.Person cust 
+			ON location.ZipCode = cust.ZipCode
+			WHERE cust.SSN = #{customerId})
+			
+			OR  location.City = 
+			
+			(SELECT location.City FROM Netflix_db.Location location
+			INNER JOIN Netflix_db.Person cust 
+			ON location.ZipCode = cust.ZipCode
+			WHERE cust.SSN = 111111111) )as allCustomers
+			
+			ON Account.Customer = allCustomers.custId
+			
+			INNER JOIN Rental
+			ON Account.Id = Rental.AccountId
+			
+			INNER JOIN Movie
+			ON Rental.MovieId = Movie.Id
+			
+			LIMIT 10;
+    </select>
      
     <insert id="insertMovie">
     INSERT INTO Movie(Name,Type,Rating,DistrFee,NumCopies)
