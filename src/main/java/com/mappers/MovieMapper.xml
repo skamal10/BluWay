@@ -18,7 +18,10 @@
     <select id="selectAll" resultMap="result">
         SELECT * FROM Movie;
     </select>
-    
+    <select id="selectById" resultMap= "result">
+    	SELECT * FROM Movie
+    	WHERE Movie.Id=#{id};
+    </select>
     <select id="selectByName" resultMap="result">
         SELECT * FROM Movie WHERE Name = #{name};
     </select>

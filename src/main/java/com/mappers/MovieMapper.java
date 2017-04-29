@@ -10,6 +10,7 @@ import com.model.Movie;
 public interface MovieMapper {
 
 	  public List<Movie> selectAll();
+	  public Movie selectById(@Param("id")Integer id);
 	  public Movie selectByName(@Param("name")String name);
 	  public List<Movie> selectMoviesHistoryByCustomerId(@Param("customerId")Integer customerId);
 	  public void updateByPrimaryKey(@Param("movie")Movie movie);
