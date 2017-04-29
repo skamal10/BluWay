@@ -96,9 +96,7 @@ public class MovieService {
 	 public List<Movie> getMovieQ(Integer accountId){
 		 List<Movie> movies = movieMapper.selectMovieQueue(accountId);
 		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
-	 }
-	 
-	 
+	 } 
 	 private void addGenresNotInList(List<String> genres){
 		 int i=0;
 		 String[] defaultMovies = MovieTypes.TypeList;
@@ -109,4 +107,15 @@ public class MovieService {
 			 }
 		 }
 	 }
+
+	public List<Movie> actorAppearedIn(String actorName) {
+			System.out.println("Before: IN the Service class");
+			System.out.println("======>");
+			System.out.println("==>" + movieMapper.actorAppearedIn(actorName));
+//			List<Movie> movies = movieMapper.actorAppearedIn(actorName);
+//			return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
+			return new ArrayList<Movie>();
+	}
+	 
+
 }

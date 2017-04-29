@@ -37,11 +37,11 @@
      </select>
      
      <select id="selectMovieQueue" resultMap="result">
-     SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies
-     FROM MovieQ
-     INNER JOIN Movie
-     ON MovieQ.MovieId = Movie.Id
-     WHERE AccountId = #{id}
+	     SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies
+	     FROM MovieQ
+	     INNER JOIN Movie
+	     ON MovieQ.MovieId = Movie.Id
+	     WHERE AccountId = #{id}
      </select>
     
     <update id="updateByPrimaryKey">
@@ -56,7 +56,7 @@
     	WHERE Id = #{movie.id};
     </update>
     
-    <select id="selectMoviesHistoryByCustomerId" resultMap = "result">
+    <select id="selectMoviesHistoryByCustomerId" resultMap="result">
     	SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies 
     	FROM Customer 
 		LEFT JOIN Account
@@ -174,8 +174,17 @@
     </select>
      
     <insert id="insertMovie">
-    INSERT INTO Movie(Name,Type,Rating,DistrFee,NumCopies)
-    VALUES(#{movie.name}, #{movie.type}, #{movie.rating}, #{movie.distributionFee}, #{movie.numCopies});
+	    INSERT INTO Movie(Name,Type,Rating,DistrFee,NumCopies)
+	    VALUES(#{movie.name}, #{movie.type}, #{movie.rating}, #{movie.distributionFee}, #{movie.numCopies});
     </insert>
+    
+	<select id="actorAppearedIn" resultMap="result">    
+		SELECT Movie.Name FROM Movie 
+		INNER JOIN AppearedIn
+		ON Movie.id = AppearedIn.MovieId
+		INNER JOIN Actor 
+		ON AppearedIn.ActorId = Actor.id
+		WHERE Actor.Name = #{actorName};
+	</select>
     
 </mapper>

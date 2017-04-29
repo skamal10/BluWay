@@ -49,6 +49,7 @@ import util.Constants.MovieErrors;
 			return movies;
 		}
 		
+		
 		@RequestMapping(value="movie/history/{customerId}", method = RequestMethod.GET)
 		 public @ResponseBody List<Movie> getMovieHistory(@PathVariable("customerId") Integer customerId) {
 			List<Movie> movieHistory =  movieService.getMovieHistory(customerId);
@@ -104,7 +105,6 @@ import util.Constants.MovieErrors;
 				System.out.println(e); // Replace this with a logger.
 				return null;
 			}
-			
 		}
 		
 		@RequestMapping(value="movie/favoriteGenres/{accountId}", method = RequestMethod.GET)
@@ -120,6 +120,16 @@ import util.Constants.MovieErrors;
 			
 		}
 
+		// Get a list of all movies the actor appeared 
+		@RequestMapping(value="movie/actor/{actorName}", method = RequestMethod.POST)
+		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorName") String actorName) {
+			System.out.println(actorName);
+			List<Movie> movies =  movieService.actorAppearedIn(actorName);
+			System.out.println("In the controller"+movies.getClass().getName());
+			return new ArrayList<Movie>();
+		}
+
+		
 		 @RequestMapping("/")
 		    public String homePage() {
 			 return "index";

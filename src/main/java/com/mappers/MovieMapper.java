@@ -1,5 +1,6 @@
 package com.mappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -21,6 +22,7 @@ public interface MovieMapper {
 	  public List<String> selectUserFavoriteGenres(@Param("accountId") Integer accountId);
 	  public List<String> selectSystemFavoriteGenres();
 	  public List<Movie> selectPersonalizedList(@Param("customerId")Integer customerId);
-	  
+	  public List<Movie> actorAppearedIn(@Param("actorName")String actorName);
+
 	  
 }
