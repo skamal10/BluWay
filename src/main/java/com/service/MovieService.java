@@ -21,7 +21,7 @@ public class MovieService {
 		 List<Movie> movie = movieMapper.selectAll();
 		 return movie;
 	 }
-	 
+
 	 public Movie getMovieByName(String movieName){
 		 Movie movie = movieMapper.selectByName(movieName);
 		 return movie;
@@ -64,4 +64,15 @@ public class MovieService {
 		 List<Movie> movies = movieMapper.selectMovieQueue(accountId);
 		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
 	 }
+	 
+	public List<Movie> actorAppearedIn(String actorName) {
+			System.out.println("Before: IN the Service class");
+			System.out.println("======>");
+			System.out.println("==>" + movieMapper.actorAppearedIn(actorName));
+//			List<Movie> movies = movieMapper.actorAppearedIn(actorName);
+//			return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
+			return new ArrayList<Movie>();
+	}
+	 
+
 }

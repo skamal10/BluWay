@@ -40,6 +40,7 @@ import util.Constants.MovieErrors;
 			return movies;
 		}
 		
+		
 		@RequestMapping(value="movie/history/{customerId}", method = RequestMethod.GET)
 		 public @ResponseBody List<Movie> getMovieHistory(@PathVariable("customerId") Integer customerId) {
 			List<Movie> movieHistory =  movieService.getMovieHistory(customerId);
@@ -96,6 +97,15 @@ import util.Constants.MovieErrors;
 				return null;
 			}
 			
+		}
+
+		// Get a list of all movies the actor appeared 
+		@RequestMapping(value="movie/actor/{actorName}", method = RequestMethod.POST)
+		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorName") String actorName) {
+			System.out.println("Before: IN the Controller class");
+			List<Movie> movies =  movieService.actorAppearedIn(actorName);
+			System.out.println("In the controller"+movies.getClass().getName());
+			return new ArrayList<Movie>();
 		}
 		
 	}
