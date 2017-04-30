@@ -14,7 +14,7 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.when('/genre/:type', {
 	    templateUrl: 'template/genre',
-	    controller:  'MovieViewCtrl'
+	    controller:  'GenreCtrl'
 	})
 	
 	

@@ -16,11 +16,11 @@
         <li class="dropdown">
           <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
           <ul id="large" class="dropdown-menu list-inline">
-            <li><a href="#/">Comedy</a></li>
-            <li><a href="#/">Drama</a></li>
-            <li><a href="#/">Romance</a></li>
-            <li><a href="#/">Horror</a></li>
-            <li><a href="#/">Adventure</a></li>
+            <li><a href="#/genre/comedy">Comedy</a></li>
+            <li><a href="#/genre/drama">Drama</a></li>
+            <li><a href="#/genre/romance">Romance</a></li>
+            <li><a href="#/genre/horror">Horror</a></li>
+            <li><a href="#/genre/adventure">Adventure</a></li>
             <li role="separator" class="divider"></li>
           </ul>
         </li>
