@@ -18,6 +18,13 @@
 <script src="resources/javascript/controllers/MovieCtrl.js"></script>
 <script src="resources/javascript/controllers/MovieViewCtrl.js"></script>
 
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.2.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
   <title>BluWay</title>
 </head>
  <body  ng-app="bluWay">
