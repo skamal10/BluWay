@@ -12,6 +12,11 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/test',
 	    controller:  'MovieViewCtrl'
 	})
+	.when('/genre/:type', {
+	    templateUrl: 'template/genre',
+	    controller:  'MovieViewCtrl'
+	})
+	
 	
 	.otherwise({
 	    redirectTo: '/'
