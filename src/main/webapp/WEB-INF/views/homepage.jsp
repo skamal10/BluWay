@@ -43,6 +43,36 @@
   </div>
 </div>
 
+<div class="panel panel-default panel-custom">
+  <div class="panel-heading">
+    <h3 class="panel-title">Your Personalized List</h3>
+  </div>
+  <div class="panel-body">
+    <div class="movieList">
+    <ul class="list-inline list-in">
+        <li ng-repeat = "movies in personalizedMovies" class="movieItem">
+            <span>{{movies.name}}</span>
+        </li>
+    </ul>
+</div>
+  </div>
+</div>
+
+<div class="panel panel-default panel-custom">
+  <div class="panel-heading">
+    <h3 class="panel-title">Best Selling Movies</h3>
+  </div>
+  <div class="panel-body">
+    <div class="movieList">
+    <ul class="list-inline list-in">
+        <li ng-repeat = "movies in bestSellerList" class="movieItem">
+            <span>{{movies.name}}</span>
+        </li>
+    </ul>
+</div>
+  </div>
+</div>
+
 <div ng-repeat= "favoriteMovies in topGenres">
 <div class="panel panel-default panel-custom" ng-if ="favoriteMovies.length>0">
   <div class="panel-heading">

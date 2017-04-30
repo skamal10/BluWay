@@ -6,6 +6,7 @@ $scope.topMovies = [];
 $scope.isAdmin = false;
 $scope.currentNavItem = 'page1';
 $scope.loggedInAccount = 1;
+$scope.loggedInCustomer= 111111111;
 
 $('.carousel-control').click(function(e){
 	  e.preventDefault();
@@ -13,12 +14,37 @@ $('.carousel-control').click(function(e){
 
 
 var init = function(){
+	loadBestSellerList();
+	loadPersonalizedList();
 	loadMovieQueue();
 	loadTopMovies();
 	loadFavoriteGenres();
+	
 }
 
+var loadBestSellerList = function(){
+	$http({
+        method  : 'GET',
+        url     : '/movie/bestSellerList/'
+       })
+        .success(function(data) {
+        	if(data!=null){
+        		$scope.bestSellerList = data;
+        	}
+        });
+}
 
+var loadPersonalizedList = function(){
+	$http({
+        method  : 'GET',
+        url     : '/movie/personalize/'+$scope.loggedInCustomer
+       })
+        .success(function(data) {
+        	if(data!=null){
+        		$scope.personalizedMovies = data;
+        	}
+        });
+}
 var loadFavoriteGenres = function(){
 	$http({
         method  : 'GET',
