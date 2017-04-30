@@ -23,6 +23,7 @@ public interface MovieMapper {
 	  public List<String> selectSystemFavoriteGenres();
 	  public List<Movie> selectPersonalizedList(@Param("customerId")Integer customerId);
 	  public List<Movie> actorAppearedIn(@Param("actorName")String actorName);
+	  public List<Movie> selectBestSellers();
 
 	  
 }

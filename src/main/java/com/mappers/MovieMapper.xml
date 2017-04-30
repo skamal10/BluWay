@@ -77,7 +77,7 @@
     		On Rental.MovieId = Movie.Id
     		WHERE AccountId= #{accountId}
         	GROUP BY Type
-        	ORDER BY COUNT(*)
+        	ORDER BY COUNT(*) DESC
         	LIMIT 5;
     </select>
     
@@ -86,7 +86,7 @@
     		INNER JOIN Rental
     		On Rental.MovieId = Movie.Id
         	GROUP BY Type
-        	ORDER BY COUNT(*)
+        	ORDER BY COUNT(*) DESC
         	LIMIT 5;
     </select>
     
@@ -171,6 +171,16 @@
 			ON Rental.MovieId = Movie.Id
 			
 			LIMIT 10;
+    </select>
+    
+    <select id="selectBestSellers" resultMap= "result">
+    	SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies
+		FROM Rental
+		LEFT JOIN Movie
+		ON Rental.MovieId = Movie.Id
+		GROUP BY Rental.MovieId
+		ORDER BY COUNT(*) DESC
+		LIMIT 15;
     </select>
      
     <insert id="insertMovie">

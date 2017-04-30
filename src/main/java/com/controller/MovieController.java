@@ -128,6 +128,33 @@ import util.Constants.MovieErrors;
 			System.out.println("In the controller"+movies.getClass().getName());
 			return new ArrayList<Movie>();
 		}
+		
+		@RequestMapping(value="movie/personalize/{customerId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getPersonalizedList(@PathVariable("customerId") Integer customerId) {
+			try{
+				return movieService.getPersonalizedList(customerId);
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
+		
+		@RequestMapping(value="movie/bestSellerList", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getBestSellerList() {
+			try{
+				return movieService.getBestSellerList();
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
+		
 
 		
 		 @RequestMapping("/")

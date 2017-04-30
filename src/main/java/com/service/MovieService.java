@@ -97,6 +97,17 @@ public class MovieService {
 		 List<Movie> movies = movieMapper.selectMovieQueue(accountId);
 		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
 	 } 
+	 
+	 public List<Movie> getPersonalizedList(Integer customerId){
+		 List<Movie> movies = movieMapper.selectPersonalizedList(customerId);
+		 return movies;
+	 }
+	 
+	 public List<Movie> getBestSellerList(){
+		 List<Movie> movies = movieMapper.selectBestSellers();
+		 return movies;
+	 }
+	 
 	 private void addGenresNotInList(List<String> genres){
 		 int i=0;
 		 String[] defaultMovies = MovieTypes.TypeList;
