@@ -7,6 +7,15 @@ public class Movie {
 	private Integer rating;
 	private Integer distributionFee;
 	private Integer numCopies;
+	private String description;
+	
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getName() {
 		return name;
 	}

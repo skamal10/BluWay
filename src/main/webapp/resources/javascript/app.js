@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('bluWay',["ngRoute"]);
+var app = angular.module('bluWay',['ngRoute','ngAnimate', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider){
 
@@ -9,12 +9,16 @@ app.config(['$routeProvider', function($routeProvider){
 	    controller:  'MovieCtrl'
 	})
 	.when('/movie/:movieId', {
-	    templateUrl: 'template/test',
+	    templateUrl: 'template/movieViewer',
 	    controller:  'MovieViewCtrl'
 	})
 	.when('/genre/:type', {
 	    templateUrl: 'template/genre',
 	    controller:  'MovieViewCtrl'
+	})
+	.when('/order/:type', {
+	    templateUrl: 'template/orderPage',
+	    controller:  'OrderPageCtrl'
 	})
 	
 	
