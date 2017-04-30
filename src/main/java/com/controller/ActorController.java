@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.model.Actor;
+import com.model.Movie;
 import com.service.ActorService;
 import util.Constants.ActorErrors;
 
@@ -24,10 +25,18 @@ public class ActorController {
 		private ActorService actorService;
 		
 		// Get a list of all Actors
-		@RequestMapping(value="actor/all", method = RequestMethod.POST)
+		@RequestMapping(value="actor/all", method = RequestMethod.GET)
 		 public @ResponseBody List<Actor> getAllActors() {
 			List<Actor> actors = actorService.selectAll();
 			return actors;
-		}		
+		}
+		
+		 // Get all the actor that appeared in a movie 
+		@RequestMapping(value="actor/appeared/{movieId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Actor> actorsAppeared(@PathVariable("movieId") Integer movieId ){
+			List<Actor> actors = actorService.actorsAppeared(movieId); 
+			return actors;
+
+		} 
 
 }

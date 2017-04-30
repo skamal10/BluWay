@@ -121,7 +121,7 @@ import util.Constants.MovieErrors;
 		}
 
 		// Get a list of all movies the actor appeared 
-		@RequestMapping(value="movie/actor/{actorName}", method = RequestMethod.POST)
+		@RequestMapping(value="movie/actor/{actorName}", method = RequestMethod.GET)
 		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorName") String actorName) {
 			System.out.println(actorName);
 			List<Movie> movies =  movieService.actorAppearedIn(actorName);
