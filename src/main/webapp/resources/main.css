@@ -75,5 +75,17 @@ dropdown-menu .sub-menu {
 .list-in {
   white-space:nowrap;
 }
-
-
+.no-bullets{
+	list-style-type: none;
+}
+.movieName{
+	display: table;
+	margin: 0 auto;
+}
+.addMore{
+	margin-bottom: 2%;
+}
+.row-eq-height {
+    display: table;
+    table-layout: fixed;
+}
