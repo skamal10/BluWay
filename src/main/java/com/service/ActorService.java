@@ -19,6 +19,12 @@ public class ActorService {
 		return allActors;
 	}
 	
+	//retrieves a list of actors in a movie
+	public List<Actor>actorsAppeared(Integer movieId){
+		List <Actor> actors = actorMapper.actorsAppeared(movieId);
+		return actors; 
+		
+	}
 	
 
 }

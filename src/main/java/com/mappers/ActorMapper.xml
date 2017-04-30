@@ -16,7 +16,14 @@
    <select id="selectAll" resultMap="result">
         SELECT * FROM Actor;
     </select>
-
+    
+	<select id="actorsAppeared" resultMap="result">
+	SELECT * FROM Actor 
+	INNER JOIN AppearedIn ON  AppearedIn.ActorId = Actor.Id
+	INNER JOIN Movie ON Movie.Id = AppearedIn.MovieId 
+	WHERE Movie.Id = #{movieId};
+	
+	</select>
 	
 </mapper>
 	
