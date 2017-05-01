@@ -36,7 +36,7 @@
     <div class="movieList">
     <ul class="list-inline list-in">
         <li ng-repeat = "movies in movieQ" class="movieItem">
-            <span ng-href=#/movie/{{movies.id}}>{{movies.name}}</span>
+            <span><a ng-href=#/movie/{{movies.id}}>{{movies.name}}</a></span>
         </li>
     </ul>
 </div>

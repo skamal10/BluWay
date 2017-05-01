@@ -63,7 +63,7 @@ import util.Constants.MovieErrors;
 			}
 		}
 		@RequestMapping(value="movie/add", method = RequestMethod.POST)
-		 public @ResponseBody boolean addMovie(@RequestBody Movie newMovie) {
+		 public @ResponseBody Long addMovie(@RequestBody Movie newMovie) {
 				
 			return movieService.insertMovie(newMovie);
 			
@@ -121,12 +121,10 @@ import util.Constants.MovieErrors;
 		}
 
 		// Get a list of all movies the actor appeared 
-		@RequestMapping(value="movie/actor/{actorName}", method = RequestMethod.GET)
-		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorName") String actorName) {
-			System.out.println(actorName);
-			List<Movie> movies =  movieService.actorAppearedIn(actorName);
-			System.out.println("In the controller"+movies.getClass().getName());
-			return new ArrayList<Movie>();
+		@RequestMapping(value="movie/actor/{actorId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorId") Integer actorId) {
+			List<Movie> movies =  movieService.actorAppearedIn(actorId);
+			return movies;
 		}
 		
 		@RequestMapping(value="movie/personalize/{customerId}", method = RequestMethod.GET)

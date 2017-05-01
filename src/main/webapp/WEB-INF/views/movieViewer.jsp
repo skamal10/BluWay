@@ -24,7 +24,7 @@
     <uib-rating ng-model="movieRating" max="max" read-only="isReadonly" on-hover="hoveringOver(data)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
 
   <h4>Starring</h4>
-  	<div ng-repeat = "actor in actors">{{actor.name}}</div>
+  	<div ng-repeat = "actor in actors"> <a href="#/actor/{{actor.id}}"> {{actor.name}}</a></div>
 
 
 
