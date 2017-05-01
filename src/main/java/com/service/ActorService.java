@@ -26,5 +26,10 @@ public class ActorService {
 		
 	}
 	
+	public Actor getActorById(Integer actorId){
+		Actor actor = actorMapper.selectById(actorId);
+		return actor;
+	}
+	
 
 }

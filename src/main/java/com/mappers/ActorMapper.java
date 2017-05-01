@@ -10,7 +10,8 @@ import com.model.Actor;
 
 public interface ActorMapper {
 	public List<Actor> selectAll();
-	public List<Actor>actorsAppeared(Integer movieId);
+	public List<Actor>actorsAppeared(@Param("movieId")Integer movieId);
+	public Actor selectById(@Param("id")Integer id);
 	
 
 }

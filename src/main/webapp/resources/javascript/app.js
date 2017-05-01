@@ -16,9 +16,17 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/genre',
 	    controller:  'GenreCtrl'
 	})
+	.when('/actor/:actorId', {
+	    templateUrl: 'template/actor',
+	    controller:  'ActorCtrl'
+	})
 	.when('/order/:type', {
 	    templateUrl: 'template/orderPage',
 	    controller:  'OrderPageCtrl'
+	})
+	.when('/newmovie/', {
+	    templateUrl: 'template/addMovie',
+	    controller:  'NewMovieCtrl'
 	})
 	
 	

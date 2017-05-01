@@ -3,10 +3,9 @@
 app.controller('MovieViewCtrl', function ($scope,$http, $routeParams) {
   
 	$scope.movieId= $routeParams.movieId;
-
-	 
-	  $scope.max = 5;
-	  $scope.isReadonly = true;
+	$scope.editMode = false;
+	$scope.max = 5;
+	$scope.isReadonly = true;
 
 
 	  $scope.ratingStates = [
