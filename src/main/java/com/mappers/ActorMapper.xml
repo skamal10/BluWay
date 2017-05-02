@@ -17,6 +17,21 @@
         SELECT * FROM Actor;
     </select>
     
+    <insert id="insertAppearance">
+	    INSERT INTO AppearedIn(ActorId,MovieId)
+	    VALUES(#{appearance.actorId}, #{appearance.movieId});
+    </insert>
+    <delete id="deleteAppearance">
+    	DELETE FROM AppearedIn
+    	WHERE ActorId = #{appearance.actorId}
+    	AND MovieId = #{appearance.movieId}
+    </delete>
+    
+     <insert id="insertActor">
+	    INSERT INTO Actor(Name,Age,Gender)
+	    VALUES(#{actor.name}, #{actor.age}, #{actor.gender});
+    </insert>
+    
     <select id="selectById" resultMap = "result">
     	SELECT * FROM Actor 
     	WHERE Id = #{id};

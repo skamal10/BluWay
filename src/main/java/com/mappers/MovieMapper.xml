@@ -47,11 +47,10 @@
     <update id="updateByPrimaryKey">
     	UPDATE Movie
     	<set>
-    	<if test= "name!=null"> Name = #{movie.name},</if>
-    	<if test= "type!=null"> Type = #{movie.type},</if>
-    	<if test= "rating!=null"> Rating = #{movie.rating},</if>
-    	<if test= "distributionFee!=null"> DistrFee = #{movie.distributionFee},</if>
-    	<if test= "numCopies ! = null"> NumCopies = #{movie.numCopies},</if>
+    	<if test= "movie.name!=null"> Name = #{movie.name},</if>
+    	<if test= "movie.type!=null"> Type = #{movie.type},</if>
+    	<if test= "movie.distributionFee!=null"> DistrFee = #{movie.distributionFee},</if>
+    	<if test= "movie.numCopies != null"> NumCopies = #{movie.numCopies},</if>
     	</set>
     	WHERE Id = #{movie.id};
     </update>

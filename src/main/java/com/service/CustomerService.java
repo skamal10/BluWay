@@ -41,17 +41,17 @@ public class CustomerService {
 	  }
 	  
 	  
-	  public boolean updateCustomer(int id){
-		  try{
-		  customerMapper.updateCustomerById(id);
-		  return true;
-		  }
-			 catch(Exception e){
-				 System.out.println(e);
-				 return false;
-			 }
-		  
-	  }
+//	  public boolean updateCustomer(int id){
+//		  try{
+//		  customerMapper.updateCustomerById(id);
+//		  return true;
+//		  }
+//			 catch(Exception e){
+//				 System.out.println(e);
+//				 return false;
+//			 }
+//		  
+//	  }
 	  
 	  public List<Customer> mostActive(){
 		 List<Customer> customer= customerMapper.mostActive();

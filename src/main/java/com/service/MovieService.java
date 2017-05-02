@@ -42,12 +42,23 @@ public class MovieService {
 	 public Long insertMovie(Movie movie){
 		 try{
 			 movieMapper.insertMovie(movie);
-			 System.out.print(movie.getId());
 			 return movie.getId();
 		 }
 		 catch(Exception e){
 			 System.out.println(e);
 			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 public boolean updateMovie(Movie movie){
+		 try{
+			 movieMapper.updateByPrimaryKey(movie);
+			 return true;
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return false;
 		 }
 		 
 	 }
