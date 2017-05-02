@@ -35,6 +35,13 @@ import util.Constants.MovieErrors;
 			
 		}
 		
+		@RequestMapping(value="movie/update", method = RequestMethod.POST)
+		 public @ResponseBody boolean updateMovie(@RequestBody Movie movie) {
+				
+			return movieService.updateMovie(movie);
+			
+		}
+		
 		@RequestMapping(value="movie/{movieId}", method = RequestMethod.GET)
 		 public @ResponseBody Movie getMovieById(@PathVariable("movieId") Integer movieId) {
 			Movie movie=  movieService.getMovieById(movieId);

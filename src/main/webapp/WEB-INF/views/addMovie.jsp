@@ -11,6 +11,18 @@
   
 	  <div class="col-sm-6">
   	<img src="resources/images/1.jpg" alt="Description" class="featuredImages" />
+  	<br><br>
+ 	<md-chips  ng-model="actors" readonly="isReadOnly" md-removable="isReadOnly" md-on-remove="removeAppearance($chip)">
+  	<md-chip-template>
+        <span>
+          {{$chip.name}}
+        </span>
+      </md-chip-template>
+  	</md-chips>
+  	
+  	<input  type="text" ng-model=selectedActor uib-typeahead="actor as actor.name for actor in allActors | filter:{name:$viewValue} | limitTo:8" class="form-control">
+  	<button ng-disabled = "!selectedActor" type="submit" ng-click="addAppearance($chip)" class="btn btn-primary" >Add Actor to Movie</button>
+  		<button class="btn btn-default" ng-click="open('lg')">Quick Add Actor</button>
   
   	</div>
   
@@ -42,7 +54,8 @@
     <input type="number" class="form-control" id="numCopies" ng-model="movie.numCopies" placeholder="Copies">
  </div>
  </div>
-  <div class="form-group">
+  <div class="row">
+  <div class="form-group col-md-4">
    <label >Genre</label>
  <select class="form-control" ng-model="movie.type">
  <option value="" disabled selected>Select Genre</option>
@@ -54,6 +67,7 @@
   <option value = "Family">Family</option>
 </select>
  </div>
+  </div>
  <div class="form-group">
   <div class="checkbox">
     <label for="featured">
