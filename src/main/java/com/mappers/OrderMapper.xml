@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+       
+    <mapper namespace="com.mappers.OrderMapper">
+    
+    <resultMap id="result" type="Order">
+        <result property="id" column="Id"/>
+        
+        <result property ="dateTime" column ="DateTime"/>
+		 <result property ="movieName" column ="Name"/>  
+		 <result property="movieId" column="Id"/>   
+        <result property="returnDate" column="ReturnDate"/>   
+          <result property="movieRating" column="MovieRating"/>  
+    </resultMap>
+    
+
+   
+   
+   <select id="selectAll" resultMap="result">
+        SELECT * FROM Orders;
+    </select>
+        
+    <select id="pastOrders" resultMap="result">
+    
+SELECT Orders.DateTime , Orders.Id, Movie.Name, Movie.Id, Rental.MovieRating
+    FROM Account
+    INNER JOIN Rental
+    ON Account.Id = Rental.AccountId
+    INNER JOIN Movie
+    ON Rental.MovieId = Movie.Id
+    INNER JOIN Orders
+    ON Rental.OrderId= Orders.Id
+    WHERE Account.Id = 1
+    
+    
+    
+    </select>
+    
+    <update id="addRating">
+    UPDATE Rental
+     <set>
+    <if test= "order.movieRating !=null"> MovieRating = #{order.movieRating},</if>
+    
+    </set>
+    	WHERE OrderId = #{order.id}
+ 		AND MovieId= #{order.movieId}
+    
+      </update>
+      
+      
+      
+      
+      <update id="addAvgRating">
+    UPDATE Movie
+    SET Rating = (
+    SELECT AVG(MovieRating) FROM Rental 
+    WHERE Rental.MovieId= #{id}
+    AND Rental.MovieRating IS NOT NULL )
+    WHERE Movie.Id= #{id}
+    </update>
+    
+    
+    
+    </mapper>
