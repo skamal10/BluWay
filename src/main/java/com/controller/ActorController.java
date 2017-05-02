@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.model.Actor;
+import com.model.AppearedIn;
 import com.model.Movie;
 import com.service.ActorService;
 import util.Constants.ActorErrors;
@@ -44,4 +45,30 @@ public class ActorController {
 			return actor;
 
 		} 
+		@RequestMapping(value="actor/add", method = RequestMethod.POST)
+		 public @ResponseBody int addActor(@RequestBody Actor newActor) {
+				
+			return actorService.insertActor(newActor);
+			
+		}
+		@RequestMapping(value="actor/addAppearance", method = RequestMethod.POST)
+		 public @ResponseBody List<Actor> addAppearance(@RequestBody AppearedIn appearance) {
+			
+			return actorService.addAppearance(appearance);
+			
+		}
+		
+		@RequestMapping(value="actor/addMultipleAppearances", method = RequestMethod.POST)
+		 public @ResponseBody int addMultipleAppearance(@RequestBody List<AppearedIn> appearances) {
+			
+			return actorService.addAllAppearances(appearances);
+			
+		}
+		
+		@RequestMapping(value="actor/removeAppearance", method = RequestMethod.POST)
+		 public @ResponseBody List<Actor> removeAppearance(@RequestBody AppearedIn appearance) {
+			
+			return actorService.removeAppearance(appearance);
+			
+		}
 }
