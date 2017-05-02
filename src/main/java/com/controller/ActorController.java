@@ -38,5 +38,10 @@ public class ActorController {
 			return actors;
 
 		} 
+		@RequestMapping(value="actor/{actorId}", method = RequestMethod.GET)
+		 public @ResponseBody Actor actorById(@PathVariable("actorId") Integer actorId ){
+			Actor actor = actorService.getActorById(actorId);
+			return actor;
 
+		} 
 }

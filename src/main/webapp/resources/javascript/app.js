@@ -18,15 +18,20 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.when('/genre/:type', {
 	    templateUrl: 'template/genre',
-	    controller:  'MovieViewCtrl'
+	    controller:  'GenreCtrl'
+	})
+	.when('/actor/:actorId', {
+	    templateUrl: 'template/actor',
+	    controller:  'ActorCtrl'
 	})
 	.when('/order/:id', {
 	    templateUrl: 'template/orderPage',
 	    controller:  'OrderPageCtrl'
 	})
-
-	
-	
+	.when('/newmovie/', {
+	    templateUrl: 'template/addMovie',
+	    controller:  'NewMovieCtrl'
+	})
 	.otherwise({
 	    redirectTo: '/'
 	});

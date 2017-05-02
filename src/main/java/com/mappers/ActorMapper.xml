@@ -17,6 +17,11 @@
         SELECT * FROM Actor;
     </select>
     
+    <select id="selectById" resultMap = "result">
+    	SELECT * FROM Actor 
+    	WHERE Id = #{id};
+    </select>
+    
 	<select id="actorsAppeared" resultMap="result">
 	SELECT * FROM Actor 
 	INNER JOIN AppearedIn ON  AppearedIn.ActorId = Actor.Id
