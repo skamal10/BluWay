@@ -61,8 +61,6 @@ app.controller('MovieViewCtrl', function ($scope,$http, $routeParams) {
 	
 	
 	
-	
-	
 
 	loadMovie();
 

@@ -12,6 +12,10 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieViewer',
 	    controller:  'MovieViewCtrl'
 	})
+	.when('/queue/:id', {
+	    templateUrl: 'template/movieQ',
+	    controller:  'MovieQCtrl'
+	})
 	.when('/genre/:type', {
 	    templateUrl: 'template/genre',
 	    controller:  'MovieViewCtrl'
@@ -20,6 +24,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/orderPage',
 	    controller:  'OrderPageCtrl'
 	})
+
 	
 	
 	.otherwise({
