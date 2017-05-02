@@ -17,6 +17,7 @@
 <script src="resources/javascript/app.js"></script>
 <script src="resources/javascript/controllers/MovieCtrl.js"></script>
 <script src="resources/javascript/controllers/MovieViewCtrl.js"></script>
+<script src="resources/javascript/controllers/AccountCtrl.js"></script>
 
   <title>BluWay</title>
 </head>

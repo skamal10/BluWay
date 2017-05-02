@@ -16,6 +16,12 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/genre',
 	    controller:  'MovieViewCtrl'
 	})
+	.when('/account', {
+	    templateUrl: 'template/myAccount',
+	    controller: 'AccountCtrl'
+	})
+	
+	
 	
 	
 	.otherwise({
