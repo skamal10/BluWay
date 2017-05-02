@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" style=color:white href="#/">BluWay</a>
+      <a class="navbar-left" style=color:white href="#/"> <img src="resources/images/logo2.png" width="60px" ></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

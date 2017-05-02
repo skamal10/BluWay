@@ -124,7 +124,6 @@ app.controller('MovieViewCtrl', function ($scope,$http, $routeParams, $uibModal)
 	}
 	
 	 $scope.open = function (size) {
-
 		    var modalInstance = $uibModal.open({
 		      templateUrl: 'template/actorModal',
 		      controller: 'ActorModalCtrl',
