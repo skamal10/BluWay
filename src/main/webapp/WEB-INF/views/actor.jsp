@@ -1,4 +1,5 @@
-<h1>{{type}}</h1>
+<h1>{{actor.name}}</h1>
+<uib-rating ng-model="actorRating" max="max" read-only="isReadonly" on-hover="hoveringOver(data)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
 <br>
 <br>
 <br>

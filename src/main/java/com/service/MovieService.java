@@ -39,9 +39,21 @@ public class MovieService {
 		 return movieHistory;
 	 }
 	 
-	 public boolean insertMovie(Movie movie){
+	 public Long insertMovie(Movie movie){
 		 try{
 			 movieMapper.insertMovie(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 public boolean updateMovie(Movie movie){
+		 try{
+			 movieMapper.updateByPrimaryKey(movie);
 			 return true;
 		 }
 		 catch(Exception e){
@@ -105,6 +117,7 @@ public class MovieService {
 	 
 	 public List<Movie> getBestSellerList(){
 		 List<Movie> movies = movieMapper.selectBestSellers();
+		 
 		 return movies;
 	 }
 	 
@@ -119,13 +132,9 @@ public class MovieService {
 		 }
 	 }
 
-	public List<Movie> actorAppearedIn(String actorName) {
-			System.out.println("Before: IN the Service class");
-			System.out.println("======>");
-			System.out.println("==>" + movieMapper.actorAppearedIn(actorName));
-//			List<Movie> movies = movieMapper.actorAppearedIn(actorName);
-//			return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
-			return new ArrayList<Movie>();
+	public List<Movie> actorAppearedIn(Integer actorId) {
+			List<Movie> movies = movieMapper.actorAppearedIn(actorId);
+			return movies;
 	}
 	 
 

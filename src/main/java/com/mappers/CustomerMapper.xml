@@ -115,7 +115,9 @@
     
     <select id="pastOrders" resultMap="result">
     
-SELECT Orders.DateTime , Orders.Id, Movie.Name
+
+   SELECT Orders.DateTime , Orders.Id, Movie.Name
+
     FROM Account
     INNER JOIN Rental
     ON Account.Id = Rental.AccountId
@@ -124,9 +126,6 @@ SELECT Orders.DateTime , Orders.Id, Movie.Name
     INNER JOIN Orders
     ON Rental.OrderId= Orders.Id
     WHERE Account.Id = #{id}
-    
-    
-    
     </select>
        
     </mapper>

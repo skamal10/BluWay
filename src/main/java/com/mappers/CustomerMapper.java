@@ -10,7 +10,7 @@ import com.model.Movie;
 public interface CustomerMapper {
 	
 	public List<Customer> selectAll();
-	public void updateCustomerById(@Param("id")Integer id);
+	public void updateCustomerById(@Param("customer")Customer customer);
 	public void insertCustomer(@Param("customer") Customer customer); 
 	public Customer selectById(@Param("SSN")Long SSN);
 	
