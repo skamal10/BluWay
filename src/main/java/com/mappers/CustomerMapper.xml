@@ -90,7 +90,7 @@
     ON Rental.MovieId=Movie.Id
     LEFT JOIN Orders
     ON Rental.OrderId =Orders.Id
-    WHERE Customer.Id= #{id}
+    WHERE Account.Id= 1
     AND Orders.ReturnDate IS NULL
     
     
@@ -115,7 +115,9 @@
     
     <select id="pastOrders" resultMap="result">
     
+
    SELECT Orders.DateTime , Orders.Id, Movie.Name
+
     FROM Account
     INNER JOIN Rental
     ON Account.Id = Rental.AccountId
@@ -124,7 +126,6 @@
     INNER JOIN Orders
     ON Rental.OrderId= Orders.Id
     WHERE Account.Id = #{id}
-
     </select>
        
     </mapper>
