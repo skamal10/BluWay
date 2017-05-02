@@ -12,6 +12,10 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieViewer',
 	    controller:  'MovieViewCtrl'
 	})
+	.when('/queue/:id', {
+	    templateUrl: 'template/movieQ',
+	    controller:  'MovieQCtrl'
+	})
 	.when('/genre/:type', {
 	    templateUrl: 'template/genre',
 	    controller:  'GenreCtrl'
@@ -20,7 +24,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/actor',
 	    controller:  'ActorCtrl'
 	})
-	.when('/order/:type', {
+	.when('/order/:id', {
 	    templateUrl: 'template/orderPage',
 	    controller:  'OrderPageCtrl'
 	})
@@ -32,8 +36,6 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieStats',
 	    controller:  'MovieStatsCtrl'
 	})
-	
-	
 	.otherwise({
 	    redirectTo: '/'
 	});

@@ -24,6 +24,8 @@
 <script src="resources/javascript/app.js"></script>
 <script src="resources/javascript/controllers/MovieCtrl.js"></script>
 <script src="resources/javascript/controllers/MovieViewCtrl.js"></script>
+<script src="resources/javascript/controllers/OrderPageCtrl.js"></script>
+<script src="resources/javascript/controllers/MovieQCtrl.js"></script>
 <script src="resources/javascript/controllers/GenreCtrl.js"></script>
 <script src="resources/javascript/controllers/ActorCtrl.js"></script>
 <script src="resources/javascript/controllers/NewMovieCtrl.js"></script>
