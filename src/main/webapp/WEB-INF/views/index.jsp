@@ -17,7 +17,7 @@
 <script src="resources/javascript/app.js"></script>
 <script src="resources/javascript/controllers/MovieCtrl.js"></script>
 <script src="resources/javascript/controllers/MovieViewCtrl.js"></script>
-
+<script src="resources/javascript/controllers/OrderPageCtrl.js"></script>
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>

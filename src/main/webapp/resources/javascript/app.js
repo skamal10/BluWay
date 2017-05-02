@@ -16,7 +16,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/genre',
 	    controller:  'MovieViewCtrl'
 	})
-	.when('/order/:type', {
+	.when('/order/:id', {
 	    templateUrl: 'template/orderPage',
 	    controller:  'OrderPageCtrl'
 	})
