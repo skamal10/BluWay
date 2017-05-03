@@ -76,6 +76,23 @@ import util.Constants.MovieErrors;
 			
 		}
 		
+		
+		@RequestMapping(value="movie/addToQueue", method = RequestMethod.POST)
+		 public @ResponseBody Long addToQueue(@RequestBody Movie newMovie) {
+				
+			return movieService.addToQueue(newMovie);
+			
+		}
+		
+		
+		@RequestMapping(value="movie/deleteFromQueue", method = RequestMethod.POST)
+		 public @ResponseBody Long deleteFromQueue(@RequestBody Movie newMovie) {
+				
+			return movieService.deleteFromQueue(newMovie);
+			
+		}
+		
+		
 		@RequestMapping(value="movie/type/{genre}", method = RequestMethod.GET)
 		 public @ResponseBody List<Movie> getMovieByGenre(@PathVariable("genre") String genre) {
 			try{

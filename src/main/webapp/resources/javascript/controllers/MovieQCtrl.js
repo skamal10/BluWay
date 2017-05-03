@@ -4,6 +4,23 @@ app.controller('MovieQCtrl', function ($scope,$http, $routeParams) {
 	
 	$scope.accountId= $routeParams.Id;
 	
+	
+	
+	$scope.deleteFromQueue = function(movie){
+		
+		$http({
+	          method  : 'POST',
+	          url     : '/movie/deleteFromQueue',
+	          data	  : movie
+	         })
+	           
+		
+	}
+	
+	
+	
+	
+	
 	var loadMovieQueue = function(){
 		$http({
 	        method  : 'GET',

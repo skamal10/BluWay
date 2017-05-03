@@ -187,6 +187,21 @@
 	    VALUES(#{movie.name}, #{movie.type}, #{movie.rating}, #{movie.distributionFee}, #{movie.numCopies});
     </insert>
     
+    
+        <insert id="addToQueue" keyProperty="movie.id" useGeneratedKeys="true">
+	    INSERT INTO MovieQ(MovieId, AccountId)
+	    VALUES(#{movie.id}, 1);
+    </insert>
+    
+    
+    <delete id="deleteFromQueue">
+    DELETE FROM MovieQ
+        WHERE MovieId= #{movie.id} 
+        AND AccountId = 1;
+    
+    </delete>
+    
+    
 	<select id="actorAppearedIn" resultMap="result">    
 		SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies FROM Movie 
 		INNER JOIN AppearedIn

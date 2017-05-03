@@ -20,6 +20,10 @@ public interface MovieMapper {
 	  
 	  public int insertMovie(@Param("movie") Movie movie);
 	  
+	  public int addToQueue(@Param("movie") Movie movie);
+	  
+	  public int deleteFromQueue(@Param("movie") Movie movie);
+	  
 	  
 	  public List<Movie> selectMoviesByType(@Param("type") String type);
 	  public List<Integer> selectHomeScreenMovies();

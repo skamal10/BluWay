@@ -51,6 +51,32 @@ public class MovieService {
 		 
 	 }
 	 
+	 
+	 public Long addToQueue(Movie movie){
+		 try{
+			 movieMapper.addToQueue(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 
+	 
+	 public Long deleteFromQueue(Movie movie){
+		 try{
+			 movieMapper.deleteFromQueue(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
 	 public boolean updateMovie(Movie movie){
 		 try{
 			 movieMapper.updateByPrimaryKey(movie);
