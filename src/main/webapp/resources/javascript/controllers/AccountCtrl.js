@@ -11,13 +11,15 @@
 		
 		$scope.setInfo = function(){
 			$scope.editMode = false;
-//			$http({
-//		          method  : 'POST',
-//		          url     : 'account/set/'+$scope.user
-//		         })
-//		          .success(function(data) {
-//		        	  console.log("sucess")
-//		          });
+			console.log($scope.user);
+			$http({
+		          method  : 'POST',
+		          url     : 'customer/update/',
+		         data	  : $scope.user
+		         })
+		          .success(function(data) {
+		        	 
+		          });
 			
 		}
 

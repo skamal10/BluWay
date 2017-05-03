@@ -41,17 +41,17 @@ public class CustomerService {
 	  }
 	  
 	  
-	  public boolean updateCustomer(int id){
-		  try{
-		  customerMapper.updateCustomerById(id);
-		  return true;
-		  }
-			 catch(Exception e){
-				 System.out.println(e);
-				 return false;
-			 }
-		  
-	  }
+//	  public boolean updateCustomer(int id){
+//		  try{
+//		  customerMapper.updateCustomerById(id);
+//		  return true;
+//		  }
+//			 catch(Exception e){
+//				 System.out.println(e);
+//				 return false;
+//			 }
+//		  
+//	  }
 	  
 	  public List<Customer> mostActive(){
 		 List<Customer> customer= customerMapper.mostActive();
@@ -74,6 +74,16 @@ public class CustomerService {
 	  public List<Movie> customerQueue(int id){
 		  List<Movie> movie= customerMapper.customerQueue(id);
 		  return movie;
+	  }
+	  
+	  public int updateCustomerInfo(Customer customer){
+		  
+		  System.out.println("CCN: "+customer.getCreditCardNumber()+" Plan "+ customer.getPlan());
+		  int sucess = customerMapper.updateCustomerInfo(customer);
+		  	sucess = customerMapper.updateAccountInfo(customer);
+		  	sucess = customerMapper.updatePersonInfo(customer);
+		  return sucess;
+		  
 	  }
 	  
 	  

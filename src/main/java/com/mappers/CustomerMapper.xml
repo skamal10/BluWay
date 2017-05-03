@@ -45,22 +45,33 @@
     
     
     
-    <update id="updateCustomerById">
+    <update id="updateCustomerInfo">
     	UPDATE Customer
     	<set>
-    	<if test= "firstName !=null"> FirstName = #{customer.firstName},</if>
-    	<if test= "lastName !=null"> LastName = #{customer.lastName},</if>
-    	<if test= "address !=null"> Address = #{customer.address},</if>
-    	<if test= "zipCode !=null"> ZipCode = #{customer.zipCode},</if>
-    	<if test= "telephone !=null"> Telephone = #{customer.telephone},</if>
-    	<if test= "rating !=null"> Rating = #{customer.rating},</if>
-    	<if test= "email != null"> Email = #{customer.email},</if>
-    	<if test= "creditCardNumber !=null"> CreditCardNumber = #{customer.creditCardNumber},</if>
+    	<if test= "customer.creditCardNumber !=null"> CreditCardNumber = #{customer.creditCardNumber},</if>
+    	<if test= "customer.password !=null"> Password = #{customer.password}</if>
     	</set>
-    	WHERE Id = #{customer.id};
+  		WHERE Id = 111111111;
     
     </update>
-  
+    
+   	<update id="updatePersonInfo">
+    	UPDATE Person
+    	<set>
+    	<if test= "customer.address !=null"> Address = #{customer.address},</if>
+	   	<if test= "customer.telephone !=null"> Telephone = #{customer.telephone},</if>
+    	<if test= "customer.zipcode != null"> ZipCode = #{customer.zipcode}</if>
+    	</set>
+  		WHERE SSN = 111111111;
+    </update>
+    
+    <update id="updateAccountInfo">
+    	UPDATE Account
+    	<set>
+    	<if test= "customer.plan != null"> AccountTypeLK = #{customer.plan}</if>
+    	</set>
+  		WHERE Id = 1;
+    </update>
     
     <select id="mostActive" resultMap="result">
     SELECT Person.FirstName

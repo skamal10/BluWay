@@ -11,12 +11,12 @@
 		
 		<div id = "accountInfo">
 			<table class ="table">
-				<tr>
+<!-- 				<tr>
 					<td>Username:</td>
-					<td ng-show = "!editMode" id="username"class="editable">myUserName</td> <!--Set the Username -->
+					<td ng-show = "!editMode" id="username"class="editable">myUserName</td> Set the Username
 					<td ng-show = "editMode"><input type= "text" ng-model = "user.username"></td>
 				</tr>
-			
+			 -->
 				<tr>
 					<td>Password:</td>
 					<td ng-show = "!editMode" id="password" class="editable">**********</td> <!--Set the Password -->
@@ -29,15 +29,20 @@
 					<td ng-show = "editMode"><input type="tel" ng-model = "user.telephone"></td>
 				</tr>
 				
-				<tr>
+ 				<tr>
 					<td>Address:</td>
-					<td ng-show = "!editMode" id="address" class="editable">Random Address</td> <!--Set the address -->
+					<td ng-show = "!editMode" id="address" class="editable">Random Address</td>
 					<td ng-show = "editMode"><input type="text" ng-model = "user.address"></td>
-				</tr>
+				</tr> 
+<!-- 				 <tr>
+					<td>Zip:</td>
+					<td ng-show = "!editMode" id="address" class="editable">Random Address</td>
+					<td ng-show = "editMode"><input type="text" ng-model = "user.address"></td>
+				</tr>  -->
 				<tr>
 					<td>Credit Card Number:</td>
 					<td ng-show = "!editMode" id="creditCard" class="editable"> Credit CardNumber</td> <!--Set the Credit Card -->
-					<td ng-show = "editMode"><input type="number" ng-model = "user.ccNum"></td>
+					<td ng-show = "editMode"><input type="number" ng-model = "user.creditCardNumber"></td>
 				</tr>
 				
 				
@@ -45,8 +50,8 @@
 					<td>Blu-Way Plan</td>
 					<td ng-show = "!editMode" id="plan" class="editable">Limited Plan</td> <!--Set the plan -->
 					
-					<td ng-show = "editMode" ng-model= user.plan>
-						<select class="selectpicker">
+					<td ng-show = "editMode" >
+						<select class="selectpicker" ng-model ="user.plan">
 						  <option>No Plan</option>
 						  <option selected ="selected">Limited</option>
 						  <option>Unlimited Plan#1</option>
