@@ -10,9 +10,14 @@ import com.model.Movie;
 public interface CustomerMapper {
 	
 	public List<Customer> selectAll();
+
 	public void updateCustomerById(@Param("customer")Customer customer);
 	public void insertCustomer(@Param("customer") Customer customer); 
 	public Customer selectById(@Param("SSN")Long SSN);
+	public int updateCustomerInfo(@Param("customer")Customer customer);
+	public int updatePersonInfo(@Param("customer")Customer customer);
+	public int updateAccountInfo(@Param("customer")Customer customer);
+
 	
 	//Produce a list of most active customers DONE
 	public List<Customer> mostActive();
@@ -28,11 +33,10 @@ public interface CustomerMapper {
 	
 	//A history of all current and past orders a customer has placed DONE
 	public List <Movie> pastOrders(@Param("id")Integer id); 
-	
 	public Integer selectByAccount(@Param("accountId")Integer accountId);
 	
 
-	//A customer's account settings
+	//A customer's account setting
 	
 
 	
