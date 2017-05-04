@@ -33,23 +33,53 @@ window.onclick = function(event) {
 	<div class = "infoInput" >
 		<div class="input-group">
 		  <span class="input-group-addon" id="basic-addon1">Email</span>
-		  <input type="text" class="form-control">
+		  <input type="text" class="form-control" ng-model="account.email">
 		</div> 
 		
 		<br>
 		
 		<div class="input-group">
 		  <span class="input-group-addon" id="basic-addon1">Password</span>
-		  <input type="password" class="form-control" >
+		  <input type="password" class="form-control" ng-model="account.password">
 		</div>
 		<br>
+		<div ng-show = "signUpMode">
 		
-		<select ng-show = "signUpMode" class="form-control">
-			<option selected ="selected">Limited Plan</option>
-			<option>Unlimited Plan#1</option>
-			<option>Unlimited Plan#2</option>
-			<option>Unlimited Plan#3</option>
-		</select>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Selected Plan</span>
+			<select ng-model="account.account_type" class="form-control">
+				<option selected ="selected" value="LIMITED">Limited Plan</option>
+				<option value = "UNLIMITED-1">Unlimited Plan#1</option>
+				<option value ="UNLIMITED-2">Unlimited Plan#2</option>
+				<option value ="UNLIMITED-3">Unlimited Plan#3</option>
+			</select>
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">First Name</span>
+			<input type="text" class="form-control" ng-model = "account.firstName">
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Last Name</span>
+			<input type="text" class="form-control" ng-model = "account.lastName">
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Address</span>
+			<input type="text" class="form-control" ng-model = "account.address">
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Zip Code</span>
+			<input type="text" class="form-control" ng-model = "account.zipCode">
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Telephone</span>
+			<input type="text" class="form-control" ng-model = "account.telephone">
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Credit Card Number</span>
+			<input type="text" class="form-control" ng-model = "account.creditCardNumber">
+		</div>
+
+		</div>
 	</div>
 
 	<br>
