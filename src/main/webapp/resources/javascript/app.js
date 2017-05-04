@@ -56,6 +56,9 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/login',
 		 controller: 'LoginCtrl'
 	})
+	.when('/employeeLogin', {
+	    templateUrl: 'template/employeeLogin'
+	})
 	.otherwise({
 	    redirectTo: '/'
 	});
