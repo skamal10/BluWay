@@ -20,9 +20,10 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/myAccount',
 	    controller: 'AccountCtrl'
 	})
-	
-	
-	
+	.when('/login', {
+	    templateUrl: 'template/login',
+		 controller: 'LoginCtrl'
+	})
 	
 	.otherwise({
 	    redirectTo: '/'
