@@ -62,6 +62,7 @@ app.config(['$routeProvider', function($routeProvider){
 	.otherwise({
 	    redirectTo: '/'
 	});
+	
 	 }]);
 
 app.run(function($rootScope, $http,$location) {
