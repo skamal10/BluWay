@@ -36,6 +36,12 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieStats',
 	    controller:  'MovieStatsCtrl'
 	})
+	.when('/shoppingCart/', {
+	    templateUrl: 'template/shoppingCart',
+	    controller:  'ShoppingCartCtrl'
+	})
+	
+	
 	.otherwise({
 	    redirectTo: '/'
 	});

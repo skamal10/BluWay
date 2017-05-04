@@ -13,7 +13,10 @@ app.controller('MovieQCtrl', function ($scope,$http, $routeParams) {
 	          url     : '/movie/deleteFromQueue',
 	          data	  : movie
 	         })
-	           
+		        .success(function(data) {
+	        		var index = $scope.movieQ.indexOf(movie);
+	        		$scope.movieQ.splice(index,1);
+	        });
 		
 	}
 	
@@ -24,10 +27,10 @@ app.controller('MovieQCtrl', function ($scope,$http, $routeParams) {
 	var loadMovieQueue = function(){
 		$http({
 	        method  : 'GET',
-	        url     : '/movie/queue/1',
+	        url     : 'movie/shoppingCart/1',
 	       })
 	        .success(function(data) {
-	        		$scope.movieQ = data.slice();
+	        		$scope.shoppingCart = data.slice();
 	        });
 	}
 

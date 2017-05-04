@@ -23,11 +23,14 @@ public interface MovieMapper {
 	  public int addToQueue(@Param("movie") Movie movie);
 	  
 	  public int deleteFromQueue(@Param("movie") Movie movie);
+	  public int deleteFromShoppingCart(@Param("movie") Movie movie);
 	  
+	  public int addToCart(@Param("movie") Movie movie);
 	  
 	  public List<Movie> selectMoviesByType(@Param("type") String type);
 	  public List<Integer> selectHomeScreenMovies();
 	  public List<Movie> selectMovieQueue(@Param("id") Integer id);
+	  public List<Movie> selectShoppingCart(@Param("id") Integer id);
 	  public List<String> selectUserFavoriteGenres(@Param("accountId") Integer accountId);
 	  public List<String> selectSystemFavoriteGenres();
 	  public List<Movie> selectPersonalizedList(@Param("customerId")Integer customerId);

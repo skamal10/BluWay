@@ -31,7 +31,7 @@
 <script src="resources/javascript/controllers/NewMovieCtrl.js"></script>
 <script src="resources/javascript/controllers/ActorModalCtrl.js"></script>
 <script src="resources/javascript/controllers/MovieStatsCtrl.js"></script>
-
+<script src="resources/javascript/controllers/ShoppingCartCtrl.js"></script>
   <title>BluWay</title>
 </head>
  <body  ng-app="bluWay">

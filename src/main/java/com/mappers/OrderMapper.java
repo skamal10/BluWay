@@ -15,4 +15,6 @@ public interface OrderMapper {
 	//public List <Integer> movieRating(@Param("id")Integer id);
 	public void addRating(@Param("order") Order order);
 	public void addAvgRating(@Param("id") Integer id); // return int which is new rating
+
+	
 }

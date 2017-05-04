@@ -113,7 +113,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div  class="text-center">
-                    <button type="submit" class="btn btn-success" ng-show="!editMode">Order</button>
+                    <button type="submit" class="btn btn-success" ng-show="!editMode" ng-click="addToCart(movie)">Add to Cart</button>
                     <button type="submit" class="btn btn-primary" ng-show="!editMode" ng-click="addToQueue(movie)">Add to Queue</button>
                     <button type="submit" class="btn btn-primary" ng-show="!editMode" ng-click="toggleEditMode()" >Edit</button>
                       <button type="submit" class="btn btn-primary" ng-show="editMode" ng-click="toggleEditMode()">Cancel</button>

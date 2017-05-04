@@ -65,10 +65,37 @@ public class MovieService {
 	 }
 	 
 	 
+	 public Long addToCart(Movie movie){
+		 try{
+			 movieMapper.addToCart(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 
 	 
 	 public Long deleteFromQueue(Movie movie){
 		 try{
 			 movieMapper.deleteFromQueue(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 
+	 
+	 public Long deleteFromShoppingCart(Movie movie){
+		 try{
+			 movieMapper.deleteFromShoppingCart(movie);
 			 return movie.getId();
 		 }
 		 catch(Exception e){
@@ -135,6 +162,14 @@ public class MovieService {
 		 List<Movie> movies = movieMapper.selectMovieQueue(accountId);
 		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
 	 } 
+	 
+	 public List<Movie> getShoppingCart(Integer accountId){
+		 List<Movie> movies = movieMapper.selectShoppingCart(accountId);
+		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
+	 } 
+	 
+	 
+	 
 	 
 	 public List<Movie> getPersonalizedList(Integer customerId){
 		 List<Movie> movies = movieMapper.selectPersonalizedList(customerId);

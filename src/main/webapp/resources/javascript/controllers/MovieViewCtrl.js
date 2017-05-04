@@ -29,6 +29,17 @@ $scope.addToQueue= function(movie){
 
 
 
+$scope.addToCart= function(movie){
+	
+	$http({
+          method  : 'POST',
+          url     : '/movie/addToCart',
+          data	  : movie
+         })
+                
+}
+
+
 
 
 	
