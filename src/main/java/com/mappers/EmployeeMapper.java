@@ -14,7 +14,7 @@ public interface EmployeeMapper {
 	public void updateEmployeeById(@Param("SSN")Integer SSN); //Skipped
 	public void insertEmployee(@Param("employee") Employee employee); 
 	public Employee selectById(@Param("SSN")Integer SSN);
-	
+	public Employee login(@Param("SSN")Long SSN, @Param("password")String password);
 	public Employee mostActive(); 
 	// Determine which customer representative oversaw the most transactions (rentals)
 

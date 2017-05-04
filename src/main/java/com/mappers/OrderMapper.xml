@@ -28,6 +28,16 @@
         SELECT * FROM Orders;
     </select>
     
+    <insert id="createNewOrder" keyProperty="order.id" useGeneratedKeys="true">
+    	INSERT INTO Orders(DateTime)
+    	VALUES(NOW());
+    </insert>
+    
+    <insert id="createNewRental" >
+    	INSERT INTO Rental(AccountId,CustRepId,OrderId,MovieId)
+    	VALUES (#{accountId},1,#{orderId},#{movieId});
+    </insert>    
+    
     <select id="selectSubscriptionsByMonth" resultType="Integer">
     	SELECT COUNT(*) FROM Account
     	WHERE month(DateOpened)= #{month}
@@ -109,6 +119,11 @@ SELECT Orders.DateTime , Orders.Id, Movie.Name, Movie.Id AS MovieId, Rental.Movi
     AND Rental.MovieRating IS NOT NULL )
     WHERE Movie.Id= #{id}
     </update>
+    
+    <delete id="clearShoppingCart">
+    	DELETE FROM ShoppingCart
+    	WHERE AccountId=#{accountId};
+    </delete>
     
     
     

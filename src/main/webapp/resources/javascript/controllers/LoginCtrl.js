@@ -14,10 +14,6 @@
 			$scope.signUpMode = true;
 
 		}
-		$scope.account = {
-			 email: 'vicdu@cs.sunysb.edu',
-			 password: 'testing123' 
-	};
 	
 	$scope.login = function(){
 			
@@ -33,6 +29,19 @@
 	          		}
 	          });
 		
+	}
+	
+	$scope.register = function(){
+		$http({
+	          method  : 'POST',
+	          url     : 'register',
+	          data	  : $scope.account
+	         })
+	          .success(function(data) {
+	          		if(data!=null){
+	          			$scope.signUpOff()
+	          		}
+	          });
 	}
 
 

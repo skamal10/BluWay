@@ -207,27 +207,27 @@
     
         <insert id="addToQueue" keyProperty="movie.id" useGeneratedKeys="true">
 	    INSERT INTO MovieQ(MovieId, AccountId)
-	    VALUES(#{movie.id}, 1);
+	    VALUES(#{movieId}, #{accountId});
     </insert>
     
     
-      <insert id="addToCart" keyProperty="movie.id" useGeneratedKeys="true">
+      <insert id="addToCart">
 	    INSERT INTO ShoppingCart(MovieId, AccountId)
-	    VALUES(#{movie.id}, 1);
+	    VALUES(#{movieId}, #{accountId});
     </insert>
     
     <delete id="deleteFromQueue">
     DELETE FROM MovieQ
-        WHERE MovieId= #{movie.id} 
-        AND AccountId = 1;
+        WHERE MovieId= #{movieId} 
+        AND AccountId = #{accountId} ;
     
     </delete>
     
         
     <delete id="deleteFromShoppingCart">
     DELETE FROM ShoppingCart
-        WHERE MovieId= #{movie.id} 
-        AND AccountId = 1;
+        WHERE MovieId= #{movieId}  
+        AND AccountId = #{accountId};
     
     </delete>
     

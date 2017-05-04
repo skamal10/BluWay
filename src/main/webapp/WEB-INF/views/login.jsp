@@ -55,6 +55,10 @@ window.onclick = function(event) {
 			</select>
 		</div>
 		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">SSN</span>
+			<input type="number" class="form-control" ng-model = "account.ssn">
+		</div>
+		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">First Name</span>
 			<input type="text" class="form-control" ng-model = "account.firstName">
 		</div>
@@ -68,7 +72,7 @@ window.onclick = function(event) {
 		</div>
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Zip Code</span>
-			<input type="text" class="form-control" ng-model = "account.zipCode">
+			<input type="number" class="form-control" ng-model = "account.zipCode">
 		</div>
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Telephone</span>
@@ -76,7 +80,7 @@ window.onclick = function(event) {
 		</div>
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Credit Card Number</span>
-			<input type="text" class="form-control" ng-model = "account.creditCardNumber">
+			<input type="number" class="form-control" ng-model = "account.creditCardNumber">
 		</div>
 
 		</div>
@@ -86,7 +90,7 @@ window.onclick = function(event) {
 	
 	<div class= "buttonGroup">
 	<button ng-show = "!signUpMode" type="button" class="btn btn-primary btn-block" ng-click="login()">Login</button>
-	<button ng-show = "signUpMode" type="button" class="btn btn-primary btn-block">Sign-up</button>
+	<button ng-show = "signUpMode" type="button" class="btn btn-primary btn-block" ng-click="register()">Sign-up</button>
 	
 	</div>
 	

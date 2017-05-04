@@ -21,12 +21,12 @@ public interface MovieMapper {
 	  
 	  public int insertMovie(@Param("movie") Movie movie);
 	  
-	  public int addToQueue(@Param("movie") Movie movie);
+	  public int addToQueue(@Param("accountId")Integer accountId, @Param("movieId")Integer movieId);
 	  
-	  public int deleteFromQueue(@Param("movie") Movie movie);
-	  public int deleteFromShoppingCart(@Param("movie") Movie movie);
+	  public int deleteFromQueue(@Param("accountId")Integer accountId, @Param("movieId")Integer movieId);
+	  public int deleteFromShoppingCart(@Param("accountId")Integer accountId, @Param("movieId")Integer movieId);
 	  
-	  public int addToCart(@Param("movie") Movie movie);
+	  public int addToCart(@Param("accountId")Integer accountId, @Param("movieId")Integer movieId);
 	  
 	  public List<Movie> selectMoviesByType(@Param("type") String type);
 	  public List<Integer> selectHomeScreenMovies();

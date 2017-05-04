@@ -16,6 +16,8 @@ public class EmployeeService {
 
 	  @Autowired
 	  private EmployeeMapper employeeMapper;
+	  
+	  
 	
 	
 	  public List<Employee> getAllEmployees(){
@@ -61,5 +63,9 @@ public class EmployeeService {
 			 }
 		  
 	  }
+
+	public Employee getEmployeeByID(Long ssn, String password) {
+		return employeeMapper.login(ssn, password);
+	}
 	  
 }

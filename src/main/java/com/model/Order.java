@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Order {
 
 	private Date dateTime;
-	private int id;
+	private Integer id;
 	private String movieName;
 	private String genre;
 	private int customerId;
@@ -13,8 +13,14 @@ public class Order {
 	private Date returnDate;
 	private int movieId;
 	private int movieRating;
+	private Integer accountId;
 	
-	
+	public Integer getAccountId(){
+		return accountId;
+	}
+	public void setAccountId(Integer accountId){
+		this.accountId= accountId;
+	}
 	
 	public int getMovieRating() {
 		return movieRating;
@@ -34,7 +40,7 @@ public class Order {
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {

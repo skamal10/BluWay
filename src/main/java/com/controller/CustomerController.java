@@ -47,6 +47,20 @@ public class CustomerController {
 			loggedInUser = test;
 			return test;
 		}
+		@RequestMapping(value="customer/update", method = RequestMethod.POST)
+		 public @ResponseBody Integer updateCustomer(@RequestBody Customer customer) {
+			return customerService.updateCustomerInfo(customer);
+		}
+		
+		@RequestMapping(value="logout", method = RequestMethod.POST)
+		 public @ResponseBody Integer customerLogout() {
+			loggedInUser = null;
+			return 1;
+		}
+		@RequestMapping(value="register", method = RequestMethod.POST)
+		 public @ResponseBody Boolean register(@RequestBody Customer customer) {
+			return customerService.registerUser(customer);
+		}
 		@RequestMapping(value="getLoggedInUser", method = RequestMethod.GET)
 		 public @ResponseBody Customer getLoggedInUser() {
 			return loggedInUser;
@@ -91,19 +105,6 @@ public class CustomerController {
 		//return (test != null ? test.getId(): -1);
 		return test;
 	}
-	
-	
-	
-	
-	
-	 // add customer
-	@RequestMapping(value="customer/add", method = RequestMethod.POST)
-	 public @ResponseBody boolean addCustomer(@RequestBody Customer newCustomer) {
-			
-		return customerService.addCustomer(newCustomer);
-		
-	}
-	
 	
 	 // Get current Movies for customer
 	@RequestMapping(value="customer/currentMovies/{id}", method = RequestMethod.GET)

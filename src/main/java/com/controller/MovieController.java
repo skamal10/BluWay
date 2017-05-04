@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.model.Movie;
+import com.model.Order;
 import com.service.MovieService;
 import util.Constants.MovieErrors;
 
@@ -70,7 +71,7 @@ import util.Constants.MovieErrors;
 			}
 		}
 		@RequestMapping(value="movie/add", method = RequestMethod.POST)
-		 public @ResponseBody Long addMovie(@RequestBody Movie newMovie) {
+		 public @ResponseBody Integer addMovie(@RequestBody Movie newMovie) {
 				
 			return movieService.insertMovie(newMovie);
 			
@@ -78,9 +79,9 @@ import util.Constants.MovieErrors;
 		
 		
 		@RequestMapping(value="movie/addToQueue", method = RequestMethod.POST)
-		 public @ResponseBody Long addToQueue(@RequestBody Movie newMovie) {
+		 public @ResponseBody Integer addToQueue(@RequestBody Order order) {
 				
-			return movieService.addToQueue(newMovie);
+			return movieService.addToQueue(order);
 			
 			
 		}
@@ -88,23 +89,23 @@ import util.Constants.MovieErrors;
 		
 		
 		@RequestMapping(value="movie/addToCart", method = RequestMethod.POST)
-		 public @ResponseBody Long addToCart(@RequestBody Movie newMovie) {
+		 public @ResponseBody Integer addToCart(@RequestBody Order order) {
 				
-			return movieService.addToCart(newMovie);
+			return movieService.addToCart(order);
 			
 		}
 		
 		@RequestMapping(value="movie/deleteFromQueue", method = RequestMethod.POST)
-		 public @ResponseBody Long deleteFromQueue(@RequestBody Movie newMovie) {
+		 public @ResponseBody Integer deleteFromQueue(@RequestBody Order order) {
 				
-			return movieService.deleteFromQueue(newMovie);
+			return movieService.deleteFromQueue(order);
 			
 		}
 		
 		@RequestMapping(value="movie/deleteFromShoppingCart", method = RequestMethod.POST)
-		 public @ResponseBody Long deleteFromShoppingCart(@RequestBody Movie newMovie) {
+		 public @ResponseBody Integer deleteFromShoppingCart(@RequestBody Order order) {
 				
-			return movieService.deleteFromShoppingCart(newMovie);
+			return movieService.deleteFromShoppingCart(order);
 			
 		}
 		

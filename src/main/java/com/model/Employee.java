@@ -6,10 +6,19 @@ public class Employee extends Person {
 	
 	private int hourlyRate;
 	private int startDate;
+	private String password;
 	
 	
 	
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public int getHourlyRate() {
 		return hourlyRate;
 	}

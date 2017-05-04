@@ -1,14 +1,31 @@
 'use strict';
 
-app.controller('ShoppingCartCtrl', function ($scope,$http, $routeParams) {
+app.controller('ShoppingCartCtrl', function ($scope,$http, $routeParams, $rootScope) {
 	  
-	$scope.accountId= $routeParams.Id;
+	var loadCustomerByAccount = function(){
+		$http({
+	          method  : 'GET',
+	          url     : 'customer/getCustomerByAccount/'+$scope.accountId
+	         })
+	         .success(function(data) {
+	        	  if(data!=null){
+		        		 $scope.customerId = data;
+		        		 loadOrder();
+		        	  }
+		          });      
+	}
 	
-	$scope.loggedInAccount = 1;
-	$scope.loggedInCustomer= 111111111;
-	$scope.accountId= $routeParams.accountId;
 	
-	
+	$scope.placeOrder = function(){
+		$http({
+	          method  : 'POST',
+	          url     : '/order/submit',
+	          data	  : $scope.accountId
+	         })
+		        .success(function(data) {
+		        	alert("Order Submitted");
+	        });
+	}
 
 	$scope.deleteFromShoppingCart = function(movie){
 		
@@ -28,7 +45,7 @@ app.controller('ShoppingCartCtrl', function ($scope,$http, $routeParams) {
 	var loadOrder = function(){
 		$http({
 	          method  : 'GET',
-	          url     : '/movie/shoppingCart/1'
+	          url     : '/movie/shoppingCart/'+$scope.accountId
 	         })
 	         .success(function(data) {
 	        		$scope.shoppingCart = data.slice();
@@ -40,7 +57,7 @@ app.controller('ShoppingCartCtrl', function ($scope,$http, $routeParams) {
 		
 		$http({
 	          method  : 'GET',
-	          url     : '/customer/111111111'
+	          url     : '/customer/'+$scope.customerId
 	         })
 	         .success(function(data) {
 	        	  if(data!=null){
@@ -52,13 +69,18 @@ app.controller('ShoppingCartCtrl', function ($scope,$http, $routeParams) {
 		        	  
 		        	  
 		          });
-		
-	
-
-     
-	         
+		     
 	}
 	
-	loadOrder();
+	if($routeParams.Id){
+		$scope.accountId= $routeParams.Id;
+		loadCustomerByAccount();
+	}
+	else{
+		$scope.accountId = $rootScope.currentUser.accountId;
+		$scope.customerId = $rootScope.currentUser.ssn;
+		loadOrder();
+	}
+	
 	
 });

@@ -1,7 +1,7 @@
 	'use strict';
 
-	app.controller('AccountCtrl', function ($scope,$http, $routeParams) {
-		$scope.user={};
+	app.controller('AccountCtrl', function ($scope,$http, $routeParams, $rootScope) {
+		$scope.user=$rootScope.currentUser;
 		
 		$scope.editMode = false;
 		

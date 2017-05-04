@@ -37,22 +37,6 @@ private OrderService orderService;
 		//return (test != null ? test.getId(): -1);
 		return test;
 	}
-	
-	
-//	
-//	@RequestMapping(value="rental/movieRating/{id}", method = RequestMethod.GET)
-//	 public @ResponseBody List<Integer> movieRating(@PathVariable("id") Integer id ){
-//		
-//		//return "OKAY";
-//		List<Integer> test = orderService.getRating(id);
-//		//return (test != null ? test.getId(): -1);
-//		return test;
-//	}
-	
-	
-	
-	
-	
 	 // add rating
 		@RequestMapping(value="order/updateRating", method = RequestMethod.POST)
 		 public @ResponseBody boolean addRating(@RequestBody Order order){
@@ -77,6 +61,11 @@ private OrderService orderService;
 				return orderService.getAccountTypes();
 		}
 		
+		@RequestMapping(value="order/submit", method = RequestMethod.POST)
+		 public @ResponseBody Boolean submitOrder(@RequestBody Integer accountId){
+				return orderService.submitOrder(accountId);
+		}
+		
 		@RequestMapping(value="account/subscription-types/{month}", method = RequestMethod.GET)
 		 public @ResponseBody Map<String,Integer> getSubscriptionTypes(@PathVariable("month") Integer month){
 			if(month!=0){
@@ -86,15 +75,6 @@ private OrderService orderService;
 				return orderService.getAllSubscriptions();
 			}
 		}
-//		
-//		
-//
-//		 // update avg rating
-//			@RequestMapping(value="order/updateAvgRating", method = RequestMethod.POST)
-//			 public @ResponseBody boolean addAvgRating(@RequestBody int id) {
-//					
-//				return orderService.addAvgRating(id);
-//				
-//			}
+
 	
 }

@@ -11,7 +11,7 @@ app.controller('MovieQCtrl', function ($scope,$http, $routeParams, $rootScope) {
 		$http({
 	          method  : 'POST',
 	          url     : '/movie/deleteFromQueue',
-	          data	  : movie
+	          data	  : {movieId : movie.id, accountId : $scope.accountId}
 	         })
 		        .success(function(data) {
 	        		var index = $scope.movieQ.indexOf(movie);
@@ -30,7 +30,7 @@ app.controller('MovieQCtrl', function ($scope,$http, $routeParams, $rootScope) {
 	        url     : '/movie/queue/'+$scope.accountId
 	       })
 	        .success(function(data) {
-	        		$scope.shoppingCart = data.slice();
+	        	$scope.movieQ = data.slice();
 	        });
 	}
 

@@ -21,7 +21,7 @@
       
       
      <select id="selectById" resultMap="result">
-        SELECT * FROM Employee WHERE SSN = #{SSN};
+        SELECT * FROM Employee WHERE SSN = #{SSN} AND Password = #{password};
     </select>
       
       

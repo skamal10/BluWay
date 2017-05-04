@@ -1,8 +1,10 @@
 'use strict';
 
-app.controller('MovieViewCtrl', function ($scope,$http, $routeParams, $uibModal) {
+app.controller('MovieViewCtrl', function ($scope,$http, $routeParams, $uibModal, $rootScope) {
   
 	$scope.movieId= $routeParams.movieId;
+	$scope.accountId = $rootScope.currentUser.accountId;
+	$scope.access = $rootScope.currentUser.Type;
 	$scope.selectedActor = undefined;
 	$scope.editMode = false;
 	$scope.max = 5;
@@ -22,7 +24,7 @@ $scope.addToQueue= function(movie){
 		$http({
 	          method  : 'POST',
 	          url     : '/movie/addToQueue',
-	          data	  : movie
+	          data	  : {movieId: $scope.movieId, accountId: $scope.accountId}
 	         })
 	                
 	}
@@ -34,7 +36,7 @@ $scope.addToCart= function(movie){
 	$http({
           method  : 'POST',
           url     : '/movie/addToCart',
-          data	  : movie
+          data	  : {movieId: movie.id, accountId: $scope.accountId }
          })
                 
 }

@@ -23,6 +23,22 @@ public class CustomerService {
 		  
 	  }
 	  
+	  public Boolean registerUser(Customer customer){
+		  try{
+			  
+			  System.out.println(customer.getSSN());
+			  customerMapper.insertLocation(customer.getZipCode(), "Stony Brook", "NY");
+			  customerMapper.insertPerson(customer);
+			  customerMapper.insertCust(customer);
+			  customerMapper.insertAccount(customer);
+			  return true;
+		  }
+		  catch(Exception e){
+			  System.out.println(e);
+			  return false;
+		  } 
+	  }
+	  
 	  public Customer loginService(Customer customer){
 		  Customer loginCustomer = customerMapper.login(customer.getEmail());
 		  if(loginCustomer!=null && loginCustomer.getPassword().equals(customer.getPassword())){
@@ -39,17 +55,17 @@ public class CustomerService {
 		  return customer;
 	  }
   
-	  public boolean addCustomer(Customer customer){
-			 try{
-				 customerMapper.insertCustomer(customer);
-				 return true;
-			 }
-			 catch(Exception e){
-				 System.out.println(e);
-				 return false;
-			 }
-			 
-	  }
+//	  public boolean addCustomer(Customer customer){
+//			 try{
+//				 customerMapper.insertCustomer(customer);
+//				 return true;
+//			 }
+//			 catch(Exception e){
+//				 System.out.println(e);
+//				 return false;
+//			 }
+//			 
+//	  }
 	  
 	  
 //	  public boolean updateCustomer(int id){

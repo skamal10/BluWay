@@ -22,4 +22,7 @@ public interface OrderMapper {
 	public List<Order> selectOrdersByMovie(@Param("movieId") Integer movieId);
 	public Integer selectSubscriptionsByMonth(@Param("month")Integer month, @Param("type")String type);
 	public Integer selectSubscriptionsTotal(@Param("type")String type);
+	public Integer createNewOrder(@Param("order")Order order);
+	public Integer createNewRental(@Param("accountId")Integer accountId,@Param("orderId")Integer orderId, @Param("movieId")Integer movieId);
+	public Integer clearShoppingCart(@Param("accountId")Integer accountId);
 }

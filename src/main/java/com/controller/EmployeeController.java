@@ -31,6 +31,8 @@ public class EmployeeController {
 	 @Autowired
 	 private EmployeeService employeeService;
 	 
+	 public Employee loggedInUser;
+	 
 	
 	 
 	 // Get employee by id
@@ -44,6 +46,25 @@ public class EmployeeController {
 		
 	}
 	
+	@RequestMapping(value="employee/logout", method = RequestMethod.POST)
+	 public @ResponseBody Integer employeeLogout() {
+		loggedInUser = null;
+		return 1;
+	}
+	
+	@RequestMapping(value="employee/current", method = RequestMethod.GET)
+	 public @ResponseBody Employee getCurrentEmployee() {
+		
+		return loggedInUser;
+		
+	}
+	
+	@RequestMapping(value="employee/login", method = RequestMethod.POST)
+	 public @ResponseBody Employee getEmployee(@RequestBody Employee employee) {
+		Employee test = employeeService.getEmployeeByID(employee.getSSN(), employee.getPassword());
+		return test;
+		
+	}
 
 	
 	 // Get all employee

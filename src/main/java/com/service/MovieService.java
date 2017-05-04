@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.mappers.MovieMapper;
 import com.model.Movie;
+import com.model.Order;
 
 import util.Constants.MovieTypes;
 
@@ -42,7 +43,7 @@ public class MovieService {
 		 return movieHistory;
 	 }
 	 
-	 public Long insertMovie(Movie movie){
+	 public Integer insertMovie(Movie movie){
 		 try{
 			 movieMapper.insertMovie(movie);
 			 return movie.getId();
@@ -55,55 +56,55 @@ public class MovieService {
 	 }
 	 
 	 
-	 public Long addToQueue(Movie movie){
+	 public Integer addToQueue(Order order){
 		 try{
-			 movieMapper.addToQueue(movie);
-			 return movie.getId();
+			 movieMapper.addToQueue(order.getAccountId(),order.getMovieId());
+			 return 1;
 		 }
 		 catch(Exception e){
 			 System.out.println(e);
-			 return movie.getId();
+			 return null;
 		 }
 		 
 	 }
 	 
 	 
-	 public Long addToCart(Movie movie){
+	 public Integer addToCart(Order order){
 		 try{
-			 movieMapper.addToCart(movie);
-			 return movie.getId();
+			 movieMapper.addToCart(order.getAccountId(), order.getMovieId());
+			 return 1;
 		 }
 		 catch(Exception e){
 			 System.out.println(e);
-			 return movie.getId();
-		 }
-		 
-	 }
-	 
-	 
-	 
-	 public Long deleteFromQueue(Movie movie){
-		 try{
-			 movieMapper.deleteFromQueue(movie);
-			 return movie.getId();
-		 }
-		 catch(Exception e){
-			 System.out.println(e);
-			 return movie.getId();
+			 return null;
 		 }
 		 
 	 }
 	 
 	 
 	 
-	 public Long deleteFromShoppingCart(Movie movie){
+	 public Integer deleteFromQueue(Order order){
 		 try{
-			 movieMapper.deleteFromShoppingCart(movie);
-			 return movie.getId();
+			 movieMapper.deleteFromQueue(order.getAccountId(),order.getMovieId());
+			 return 1;
 		 }
 		 catch(Exception e){
 			 System.out.println(e);
-			 return movie.getId();
+			 return null;
+		 }
+		 
+	 }
+	 
+	 
+	 
+	 public Integer deleteFromShoppingCart(Order order){
+		 try{
+			 movieMapper.deleteFromShoppingCart(order.getAccountId(),order.getMovieId());
+			 return 1;
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return null;
 		 }
 		 
 	 }

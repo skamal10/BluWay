@@ -4,8 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     
-    <mapper namespace="com.mappers.CustomerMapper">
-    
+  <mapper namespace="com.mappers.CustomerMapper">
     <resultMap id="result" type="Customer">
     	<result property="SSN"  column="SSN"/>
     	<result property="accountId"  column="AccountId"/>
@@ -19,13 +18,35 @@
     	 <result property="zipCode" column="ZipCode"/> 
     	 <result property="telephone" column="Telephone"/> 
     	 <result property="password" column="Password"/>
-             
     </resultMap>
     
     <select id="selectByAccount" resultType="Integer">
     	SELECT Customer FROM Account
     	WHERE Id = #{accountId};
     </select>
+    
+    <insert id="insertPerson">
+    	INSERT INTO Person(SSN,LastName,FirstName,Address,ZipCode,Telephone)
+    	VALUES(#{customer.SSN},#{customer.lastName},#{customer.firstName},#{customer.address},#{customer.zipCode},#{customer.telephone});
+    </insert>
+    
+    <insert id="insertCust">
+    	INSERT INTO Customer(Id,Email,CreditCardNumber,Password)
+    	VALUES(#{customer.SSN},#{customer.email},#{customer.creditCardNumber},#{customer.password});
+    </insert>
+    
+    <insert id="insertLocation">
+    	Insert INTO Netflix_db.Location(ZipCode, City, State) 
+			SELECT * FROM (SELECT  #{zip}, #{city}, #{state}) AS tmp
+			WHERE NOT EXISTS(
+					SELECT ZipCode FROM Location WHERE  ZipCode= #{zip}
+			) LIMIT 1;
+    </insert>
+    
+    <insert id="insertAccount">
+    	INSERT INTO Account(DateOpened,AccountTypeLK,Customer)
+    	VALUES(NOW(),#{customer.account_type},#{customer.SSN});
+    </insert>
     
     <select id="selectAll" resultMap="result">
         SELECT * 
@@ -69,7 +90,7 @@
     	<if test= "customer.creditCardNumber !=null"> CreditCardNumber = #{customer.creditCardNumber},</if>
     	<if test= "customer.password !=null"> Password = #{customer.password}</if>
     	</set>
-  		WHERE Id = 111111111;
+  		WHERE Id = #{customer.SSN};
     
     </update>
     
@@ -78,17 +99,17 @@
     	<set>
     	<if test= "customer.address !=null"> Address = #{customer.address},</if>
 	   	<if test= "customer.telephone !=null"> Telephone = #{customer.telephone},</if>
-    	<if test= "customer.zipcode != null"> ZipCode = #{customer.zipcode}</if>
+    	<if test= "customer.zipCode != null"> ZipCode = #{customer.zipCode}</if>
     	</set>
-  		WHERE SSN = 111111111;
+  		WHERE SSN = #{customer.SSN};
     </update>
     
     <update id="updateAccountInfo">
     	UPDATE Account
     	<set>
-    	<if test= "customer.plan != null"> AccountTypeLK = #{customer.plan}</if>
+    	<if test= "customer.account_type != null"> AccountTypeLK = #{customer.account_type}</if>
     	</set>
-  		WHERE Id = 1;
+  		WHERE Id = #{customer.accountId};
     </update>
     
     <select id="mostActive" resultMap="result">
@@ -129,10 +150,7 @@
     
     
     <select id="customerQueue" resultMap="result">
-    
 
-    
-    
     SELECT Movie.name
     FROM MovieQ
     INNER JOIN Movie
@@ -143,18 +161,16 @@
     
     
     <select id="pastOrders" resultMap="result">
-    
-
-   SELECT Orders.DateTime , Orders.Id, Movie.Name
-
-    FROM Account
-    INNER JOIN Rental
-    ON Account.Id = Rental.AccountId
-    INNER JOIN Movie
-    ON Rental.MovieId = Movie.Id
-    INNER JOIN Orders
-    ON Rental.OrderId= Orders.Id
-    WHERE Account.Id = #{id}
+		   SELECT Orders.DateTime , Orders.Id, Movie.Name
+		
+		    FROM Account
+		    INNER JOIN Rental
+		    ON Account.Id = Rental.AccountId
+		    INNER JOIN Movie
+		    ON Rental.MovieId = Movie.Id
+		    INNER JOIN Orders
+		    ON Rental.OrderId= Orders.Id
+		    WHERE Account.Id = #{id}
     </select>
        
     </mapper>

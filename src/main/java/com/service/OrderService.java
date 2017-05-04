@@ -23,6 +23,8 @@ public class OrderService {
 	  @Autowired
 	
 	  private OrderMapper orderMapper;
+	  @Autowired
+	  private MovieMapper movieMapper;
 
 	  public List<Order> pastOrders(int id){
 		  List<Order> order= orderMapper.pastOrders(id);
@@ -92,6 +94,23 @@ public class OrderService {
 			}
 			return subscriptionMap;
 	}
+	 
+	 public Boolean submitOrder(Integer accountId){
+		 List<Movie> shoppingCart = movieMapper.selectShoppingCart(accountId);
+		 
+		 Order order = new Order();
+		 orderMapper.createNewOrder(order);
+		 if(order.getId()!=null){
+			 for(Movie movie : shoppingCart){
+				 orderMapper.createNewRental(accountId, order.getId(), movie.getId());
+			 }
+			 	orderMapper.clearShoppingCart(accountId);
+			 return true;
+		 }
+		 else{
+			 return false;
+		 }
+	 }
 	  
 	  
 	  

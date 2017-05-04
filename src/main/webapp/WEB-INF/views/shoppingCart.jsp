@@ -61,7 +61,7 @@
          </p>
            </div>
            <div  class="text-center">
-            <button type="submit" class="btn btn-success">Order</button>
+            <button type="submit" class="btn btn-success" ng-click="placeOrder()">Order</button>
               </div>
             
                </div>

@@ -11,12 +11,16 @@ public interface CustomerMapper {
 	
 	public List<Customer> selectAll();
 
-	public void updateCustomerById(@Param("customer")Customer customer);
-	public void insertCustomer(@Param("customer") Customer customer); 
+	public void updateCustomerById(@Param("customer")Customer customer); 
 	public Customer selectById(@Param("SSN")Long SSN);
 	public int updateCustomerInfo(@Param("customer")Customer customer);
 	public int updatePersonInfo(@Param("customer")Customer customer);
 	public int updateAccountInfo(@Param("customer")Customer customer);
+	
+	public int insertLocation(@Param("zip")Integer zip, @Param("city")String city, @Param("state")String state);
+	public int insertPerson(@Param("customer")Customer customer);
+	public int insertCust(@Param("customer")Customer customer);
+	public int insertAccount(@Param("customer")Customer customer);
 
 	
 	//Produce a list of most active customers DONE

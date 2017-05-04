@@ -115,7 +115,7 @@
                 <div  class="text-center">
                     <button type="submit" class="btn btn-success" ng-show="!editMode" ng-click="addToCart(movie)">Add to Cart</button>
                     <button type="submit" class="btn btn-primary" ng-show="!editMode" ng-click="addToQueue(movie)">Add to Queue</button>
-                    <button type="submit" class="btn btn-primary" ng-show="!editMode" ng-click="toggleEditMode()" >Edit</button>
+                    <button type="submit" class="btn btn-primary" ng-show="!editMode && access == 'Employee'" ng-click="toggleEditMode()" >Edit</button>
                       <button type="submit" class="btn btn-primary" ng-show="editMode" ng-click="toggleEditMode()">Cancel</button>
                     <button type="submit" class="btn btn-primary" ng-show="editMode" ng-click="updateMovie()">Submit</button>
                 </div>

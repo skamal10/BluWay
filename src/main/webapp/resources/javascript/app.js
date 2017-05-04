@@ -11,7 +11,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieViewer',
 	    controller:  'MovieViewCtrl'
 	})
-	.when('/queue/:id', {
+	.when('/queue/', {
 	    templateUrl: 'template/movieQ',
 	    controller:  'MovieQCtrl'
 	})
@@ -36,7 +36,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    controller:  'MovieStatsCtrl'
 	})
 
-	.when('/shoppingCart/', {
+	.when('/shoppingCart/:id?', {
 	    templateUrl: 'template/shoppingCart',
 	    controller:  'ShoppingCartCtrl'
 	})
@@ -70,6 +70,20 @@ app.run(function($rootScope, $http,$location) {
 	          .success(function(data) {
 	          		if(data){
 	          			$rootScope.currentUser = data;
+	          			$rootScope.currentUser.Type = 'Customer';
+	          		}
+	          		else{
+	          			$http({
+	          	          method  : 'GET',
+	          	          url     : 'employee/current'
+	          	         })
+	          	          .success(function(data) {
+	          	          		if(data){
+	          	          		$rootScope.currentUser = data;
+	          	          		$rootScope.currentUser.Type = 'Employee';
+	          	          		
+	          	          		}
+	          	          });
 	          		}
 	          });
 	}

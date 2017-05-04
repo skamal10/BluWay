@@ -1,7 +1,7 @@
 package com.model;
 
 public class Movie {
-	private Long id;
+	private Integer id;
 	private String name;
 	private String type;
 	private Integer rating;
@@ -19,7 +19,7 @@ public class Movie {
 	public String getName() {
 		return name;
 	}
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setName(String name) {
@@ -49,7 +49,7 @@ public class Movie {
 	public void setNumCopies(Integer numCopies) {
 		this.numCopies = numCopies;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
