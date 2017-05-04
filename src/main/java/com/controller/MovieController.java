@@ -35,6 +35,13 @@ import util.Constants.MovieErrors;
 			
 		}
 		
+		@RequestMapping(value="movie/update", method = RequestMethod.POST)
+		 public @ResponseBody boolean updateMovie(@RequestBody Movie movie) {
+				
+			return movieService.updateMovie(movie);
+			
+		}
+		
 		@RequestMapping(value="movie/{movieId}", method = RequestMethod.GET)
 		 public @ResponseBody Movie getMovieById(@PathVariable("movieId") Integer movieId) {
 			Movie movie=  movieService.getMovieById(movieId);
@@ -63,11 +70,45 @@ import util.Constants.MovieErrors;
 			}
 		}
 		@RequestMapping(value="movie/add", method = RequestMethod.POST)
-		 public @ResponseBody boolean addMovie(@RequestBody Movie newMovie) {
+		 public @ResponseBody Long addMovie(@RequestBody Movie newMovie) {
 				
 			return movieService.insertMovie(newMovie);
 			
 		}
+		
+		
+		@RequestMapping(value="movie/addToQueue", method = RequestMethod.POST)
+		 public @ResponseBody Long addToQueue(@RequestBody Movie newMovie) {
+				
+			return movieService.addToQueue(newMovie);
+			
+			
+		}
+		
+		
+		
+		@RequestMapping(value="movie/addToCart", method = RequestMethod.POST)
+		 public @ResponseBody Long addToCart(@RequestBody Movie newMovie) {
+				
+			return movieService.addToCart(newMovie);
+			
+		}
+		
+		@RequestMapping(value="movie/deleteFromQueue", method = RequestMethod.POST)
+		 public @ResponseBody Long deleteFromQueue(@RequestBody Movie newMovie) {
+				
+			return movieService.deleteFromQueue(newMovie);
+			
+		}
+		
+		@RequestMapping(value="movie/deleteFromShoppingCart", method = RequestMethod.POST)
+		 public @ResponseBody Long deleteFromShoppingCart(@RequestBody Movie newMovie) {
+				
+			return movieService.deleteFromShoppingCart(newMovie);
+			
+		}
+		
+		
 		
 		@RequestMapping(value="movie/type/{genre}", method = RequestMethod.GET)
 		 public @ResponseBody List<Movie> getMovieByGenre(@PathVariable("genre") String genre) {
@@ -95,6 +136,22 @@ import util.Constants.MovieErrors;
 			
 		}
 		
+		
+		@RequestMapping(value="movie/shoppingCart/{accountId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getShoppingCart(@PathVariable("accountId") Integer accountId) {
+			try{
+				return movieService.getShoppingCart(accountId);
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
+		
+		
+		
 		@RequestMapping(value="movie/homescreen", method = RequestMethod.GET)
 		 public @ResponseBody List<Integer> getHomeScreenMovies() {
 			try{
@@ -121,12 +178,10 @@ import util.Constants.MovieErrors;
 		}
 
 		// Get a list of all movies the actor appeared 
-		@RequestMapping(value="movie/actor/{actorName}", method = RequestMethod.GET)
-		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorName") String actorName) {
-			System.out.println(actorName);
-			List<Movie> movies =  movieService.actorAppearedIn(actorName);
-			System.out.println("In the controller"+movies.getClass().getName());
-			return new ArrayList<Movie>();
+		@RequestMapping(value="movie/actor/{actorId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> actorAppearedIn(@PathVariable("actorId") Integer actorId) {
+			List<Movie> movies =  movieService.actorAppearedIn(actorId);
+			return movies;
 		}
 		
 		@RequestMapping(value="movie/personalize/{customerId}", method = RequestMethod.GET)

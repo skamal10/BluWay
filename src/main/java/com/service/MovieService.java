@@ -1,7 +1,10 @@
 package com.service;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +42,74 @@ public class MovieService {
 		 return movieHistory;
 	 }
 	 
-	 public boolean insertMovie(Movie movie){
+	 public Long insertMovie(Movie movie){
 		 try{
 			 movieMapper.insertMovie(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 
+	 public Long addToQueue(Movie movie){
+		 try{
+			 movieMapper.addToQueue(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 
+	 public Long addToCart(Movie movie){
+		 try{
+			 movieMapper.addToCart(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 
+	 
+	 public Long deleteFromQueue(Movie movie){
+		 try{
+			 movieMapper.deleteFromQueue(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 
+	 
+	 
+	 public Long deleteFromShoppingCart(Movie movie){
+		 try{
+			 movieMapper.deleteFromShoppingCart(movie);
+			 return movie.getId();
+		 }
+		 catch(Exception e){
+			 System.out.println(e);
+			 return movie.getId();
+		 }
+		 
+	 }
+	 public boolean updateMovie(Movie movie){
+		 try{
+			 movieMapper.updateByPrimaryKey(movie);
 			 return true;
 		 }
 		 catch(Exception e){
@@ -98,6 +166,14 @@ public class MovieService {
 		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
 	 } 
 	 
+	 public List<Movie> getShoppingCart(Integer accountId){
+		 List<Movie> movies = movieMapper.selectShoppingCart(accountId);
+		 return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
+	 } 
+	 
+	 
+	 
+	 
 	 public List<Movie> getPersonalizedList(Integer customerId){
 		 List<Movie> movies = movieMapper.selectPersonalizedList(customerId);
 		 return movies;
@@ -105,6 +181,7 @@ public class MovieService {
 	 
 	 public List<Movie> getBestSellerList(){
 		 List<Movie> movies = movieMapper.selectBestSellers();
+		 
 		 return movies;
 	 }
 	 
@@ -119,14 +196,30 @@ public class MovieService {
 		 }
 	 }
 
-	public List<Movie> actorAppearedIn(String actorName) {
-			System.out.println("Before: IN the Service class");
-			System.out.println("======>");
-			System.out.println("==>" + movieMapper.actorAppearedIn(actorName));
-//			List<Movie> movies = movieMapper.actorAppearedIn(actorName);
-//			return movies != null ? movies : new ArrayList<Movie>(); // return empty list if movies is null
-			return new ArrayList<Movie>();
+	public List<Movie> actorAppearedIn(Integer actorId) {
+			List<Movie> movies = movieMapper.actorAppearedIn(actorId);
+			return movies;
 	}
+	
+	public Map<String,Integer> genreRevenueByDate(Date asOfDate) {
+		String [] genres = MovieTypes.TypeList;
+		HashMap<String,Integer> genreMap = new HashMap<String,Integer>();
+		for(String genre : genres){
+			Integer revenue = movieMapper.selectGenreRevenue(genre, asOfDate);
+			genreMap.put(genre, revenue);
+		}
+		return genreMap;
+}
+	
+	public Map<String,Integer> getTotalGenres() {
+		String [] genres = MovieTypes.TypeList;
+		HashMap<String,Integer> genreMap = new HashMap<String,Integer>();
+		for(String genre : genres){
+			Integer total = movieMapper.selectGenreTotal(genre);
+			genreMap.put(genre, total);
+		}
+		return genreMap;
+}
 	 
 
 }

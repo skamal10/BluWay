@@ -8,6 +8,8 @@
     
     <resultMap id="result" type="Customer">
     	<result property="SSN"  column="SSN"/>
+    	<result property="accountId"  column="AccountId"/>
+    	<result property="account_type"  column="AccountTypeLK"/>
         <result property="rating" column="Rating"/>   
         <result property="email" column="Email"/> 
         <result property="creditCardNumber" column="CreditCardNumber"/> 
@@ -16,8 +18,14 @@
     	 <result property="address" column="Address"/> 
     	 <result property="zipCode" column="ZipCode"/> 
     	 <result property="telephone" column="Telephone"/> 
+    	 <result property="password" column="Password"/>
              
     </resultMap>
+    
+    <select id="selectByAccount" resultType="Integer">
+    	SELECT Customer FROM Account
+    	WHERE Id = #{accountId};
+    </select>
     
     <select id="selectAll" resultMap="result">
         SELECT * 
@@ -25,6 +33,16 @@
         INNER JOIN Person
         ON Customer.Id=Person.SSN
    
+    </select>
+    
+    <select id="login" resultMap = "result">
+    	SELECT SSN, Account.Id AS AccountId, AccountTypeLK,Rating,Email,CreditCardNumber,FirstName,LastName,Address,ZipCode,Telephone,Password
+    	FROM Customer
+    	INNER JOIN Person
+    	ON Customer.Id = Person.SSN
+    	INNER JOIN Account
+    	On Customer.Id = Account.Customer
+    	WHERE Email = #{email};
     </select>
        
       <select id="selectById" resultMap="result">
@@ -101,7 +119,7 @@
     ON Rental.MovieId=Movie.Id
     LEFT JOIN Orders
     ON Rental.OrderId =Orders.Id
-    WHERE Customer.Id= #{id}
+    WHERE Account.Id= #{id}
     AND Orders.ReturnDate IS NULL
     
     
@@ -115,7 +133,7 @@
 
     
     
-      SELECT Movie.name
+    SELECT Movie.name
     FROM MovieQ
     INNER JOIN Movie
     ON MovieQ.MovieId= Movie.Id
@@ -126,23 +144,17 @@
     
     <select id="pastOrders" resultMap="result">
     
-    SELECT Orders.DateTime , Orders.Id
-    AS ORDER_ID , Movie.Name
-    FROM Customer
-    LEFT JOIN Account 
-    ON Customer.Id = Account.Customer
-    LEFT JOIN Rental
-    ON Account.ID = Rental.AccountId
-    LEFT JOIN Movie
-    ON Rental.MovieId = Movie.Id
-    LEFT JOIN Orders
-    ON Rental.OrderId= Orders.Id
-    WHERE Customer.Id = #{id}
 
-    
-    
-    
-    
+   SELECT Orders.DateTime , Orders.Id, Movie.Name
+
+    FROM Account
+    INNER JOIN Rental
+    ON Account.Id = Rental.AccountId
+    INNER JOIN Movie
+    ON Rental.MovieId = Movie.Id
+    INNER JOIN Orders
+    ON Rental.OrderId= Orders.Id
+    WHERE Account.Id = #{id}
     </select>
        
     </mapper>

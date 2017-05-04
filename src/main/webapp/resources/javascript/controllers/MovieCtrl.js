@@ -1,12 +1,12 @@
 'use strict';
 
-app.controller('MovieCtrl', function ($scope, $http) {
+app.controller('MovieCtrl', function ($scope, $http, $rootScope,$location) {
    
 $scope.topMovies = [];
 $scope.isAdmin = false;
 $scope.currentNavItem = 'page1';
-$scope.loggedInAccount = 1;
-$scope.loggedInCustomer= 111111111;
+$scope.currentUser = $rootScope.currentUser;
+
 
 $('.carousel-control').click(function(e){
 	  e.preventDefault();
@@ -37,7 +37,7 @@ var loadBestSellerList = function(){
 var loadPersonalizedList = function(){
 	$http({
         method  : 'GET',
-        url     : '/movie/personalize/'+$scope.loggedInCustomer
+        url     : '/movie/personalize/'+$scope.currentUser.ssn
        })
         .success(function(data) {
         	if(data!=null){
@@ -48,7 +48,7 @@ var loadPersonalizedList = function(){
 var loadFavoriteGenres = function(){
 	$http({
         method  : 'GET',
-        url     : '/movie/favoriteGenres/'+$scope.loggedInAccount
+        url     : '/movie/favoriteGenres/'+$scope.currentUser.accountId
        })
         .success(function(data) {
         	if(data!=null){
@@ -71,18 +71,20 @@ var loadTopMovies = function(){
 var loadMovieQueue = function(){
 	$http({
         method  : 'GET',
-        url     : '/movie/queue/'+$scope.loggedInAccount,
+        url     : '/movie/queue/'+$scope.currentUser.accountId,
        })
         .success(function(data) {
         		$scope.movieQ = data.slice();
         });
 }
-var loadTopGenres = function(){
-	
-}
-init();
 
 $scope.display = true;
+if(!$scope.currentUser){
+	$location.path('/login');
+}
+else{
+	init();
+}
 
   });
 

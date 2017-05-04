@@ -31,6 +31,15 @@
     	WHERE Type = #{type};
      </select>
      
+     <select id="selectTopMovies" resultMap = "result">
+    	SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies 
+    	FROM Movie 
+    	INNER JOIN Rental
+    	ON Movie.Id = Rental.MovieId
+    	GROUP BY Movie.Id
+    	ORDER BY COUNT(*) DESC
+    	LIMIT 7;
+     </select>
      <select id="selectHomeScreenMovies" resultType="integer">
      	SELECT Id FROM Movie
      	WHERE Featured = 1;
@@ -43,15 +52,22 @@
 	     ON MovieQ.MovieId = Movie.Id
 	     WHERE AccountId = #{id}
      </select>
+     
+         <select id="selectShoppingCart" resultMap="result">
+	     SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies
+	     FROM ShoppingCart
+	     INNER JOIN Movie
+	     ON ShoppingCart.MovieId = Movie.Id
+	     WHERE AccountId = #{id}
+     </select>
     
     <update id="updateByPrimaryKey">
     	UPDATE Movie
     	<set>
-    	<if test= "name!=null"> Name = #{movie.name},</if>
-    	<if test= "type!=null"> Type = #{movie.type},</if>
-    	<if test= "rating!=null"> Rating = #{movie.rating},</if>
-    	<if test= "distributionFee!=null"> DistrFee = #{movie.distributionFee},</if>
-    	<if test= "numCopies ! = null"> NumCopies = #{movie.numCopies},</if>
+    	<if test= "movie.name!=null"> Name = #{movie.name},</if>
+    	<if test= "movie.type!=null"> Type = #{movie.type},</if>
+    	<if test= "movie.distributionFee!=null"> DistrFee = #{movie.distributionFee},</if>
+    	<if test= "movie.numCopies != null"> NumCopies = #{movie.numCopies},</if>
     	</set>
     	WHERE Id = #{movie.id};
     </update>
@@ -183,18 +199,62 @@
 		LIMIT 15;
     </select>
      
-    <insert id="insertMovie">
+    <insert id="insertMovie" keyProperty="movie.id" useGeneratedKeys="true">
 	    INSERT INTO Movie(Name,Type,Rating,DistrFee,NumCopies)
 	    VALUES(#{movie.name}, #{movie.type}, #{movie.rating}, #{movie.distributionFee}, #{movie.numCopies});
     </insert>
     
+    
+        <insert id="addToQueue" keyProperty="movie.id" useGeneratedKeys="true">
+	    INSERT INTO MovieQ(MovieId, AccountId)
+	    VALUES(#{movie.id}, 1);
+    </insert>
+    
+    
+      <insert id="addToCart" keyProperty="movie.id" useGeneratedKeys="true">
+	    INSERT INTO ShoppingCart(MovieId, AccountId)
+	    VALUES(#{movie.id}, 1);
+    </insert>
+    
+    <delete id="deleteFromQueue">
+    DELETE FROM MovieQ
+        WHERE MovieId= #{movie.id} 
+        AND AccountId = 1;
+    
+    </delete>
+    
+        
+    <delete id="deleteFromShoppingCart">
+    DELETE FROM ShoppingCart
+        WHERE MovieId= #{movie.id} 
+        AND AccountId = 1;
+    
+    </delete>
+    
+    
 	<select id="actorAppearedIn" resultMap="result">    
-		SELECT Movie.Name FROM Movie 
+		SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies FROM Movie 
 		INNER JOIN AppearedIn
 		ON Movie.id = AppearedIn.MovieId
 		INNER JOIN Actor 
 		ON AppearedIn.ActorId = Actor.id
-		WHERE Actor.Name = #{actorName};
+		WHERE Actor.Id = #{actorId};
+	</select>
+	
+	<select id="selectGenreRevenue" resultType = "Integer">
+		SELECT COUNT(*) FROM Rental
+		INNER JOIN Movie
+		On Rental.MovieId = Movie.Id
+		LEFT JOIN Orders
+		On Rental.OrderId = Orders.Id
+		WHERE Movie.Type = #{genre}
+		AND month(Orders.DateTime) = month(#{asOfDate});
+	</select>
+	
+	
+	<select id="selectGenreTotal" resultType = "Integer">
+		SELECT COUNT(*) FROM Movie
+		WHERE Movie.Type = #{genre};
 	</select>
     
 </mapper>

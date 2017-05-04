@@ -35,6 +35,27 @@ public class CustomerController {
 	 @Autowired
 	 private CustomerService customerService;
 	 
+	 public Customer loggedInUser;
+	 
+	 
+	// Login
+		@RequestMapping(value="login", method = RequestMethod.POST)
+		 public @ResponseBody Customer getCustomer(@RequestBody Customer customer) {
+	
+			Customer test = customerService.loginService(customer);
+			
+			loggedInUser = test;
+			return test;
+		}
+		@RequestMapping(value="getLoggedInUser", method = RequestMethod.GET)
+		 public @ResponseBody Customer getLoggedInUser() {
+			return loggedInUser;
+		}
+		
+		@RequestMapping(value="customer/getCustomerByAccount/{accountId}", method = RequestMethod.GET)
+		 public @ResponseBody Integer getCustomerId(@PathVariable("accountId") Integer accountId) {
+			return customerService.getCustomerByAccount(accountId);
+		}
 	 
 	 // Get customer by id
 	@RequestMapping(value="customer/{id}", method = RequestMethod.GET)
