@@ -1,7 +1,10 @@
 package com.service;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -197,6 +200,26 @@ public class MovieService {
 			List<Movie> movies = movieMapper.actorAppearedIn(actorId);
 			return movies;
 	}
+	
+	public Map<String,Integer> genreRevenueByDate(Date asOfDate) {
+		String [] genres = MovieTypes.TypeList;
+		HashMap<String,Integer> genreMap = new HashMap<String,Integer>();
+		for(String genre : genres){
+			Integer revenue = movieMapper.selectGenreRevenue(genre, asOfDate);
+			genreMap.put(genre, revenue);
+		}
+		return genreMap;
+}
+	
+	public Map<String,Integer> getTotalGenres() {
+		String [] genres = MovieTypes.TypeList;
+		HashMap<String,Integer> genreMap = new HashMap<String,Integer>();
+		for(String genre : genres){
+			Integer total = movieMapper.selectGenreTotal(genre);
+			genreMap.put(genre, total);
+		}
+		return genreMap;
+}
 	 
 
 }

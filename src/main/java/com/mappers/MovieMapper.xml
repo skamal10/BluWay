@@ -31,6 +31,15 @@
     	WHERE Type = #{type};
      </select>
      
+     <select id="selectTopMovies" resultMap = "result">
+    	SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies 
+    	FROM Movie 
+    	INNER JOIN Rental
+    	ON Movie.Id = Rental.MovieId
+    	GROUP BY Movie.Id
+    	ORDER BY COUNT(*) DESC
+    	LIMIT 7;
+     </select>
      <select id="selectHomeScreenMovies" resultType="integer">
      	SELECT Id FROM Movie
      	WHERE Featured = 1;
@@ -230,6 +239,22 @@
 		INNER JOIN Actor 
 		ON AppearedIn.ActorId = Actor.id
 		WHERE Actor.Id = #{actorId};
+	</select>
+	
+	<select id="selectGenreRevenue" resultType = "Integer">
+		SELECT COUNT(*) FROM Rental
+		INNER JOIN Movie
+		On Rental.MovieId = Movie.Id
+		LEFT JOIN Orders
+		On Rental.OrderId = Orders.Id
+		WHERE Movie.Type = #{genre}
+		AND month(Orders.DateTime) = month(#{asOfDate});
+	</select>
+	
+	
+	<select id="selectGenreTotal" resultType = "Integer">
+		SELECT COUNT(*) FROM Movie
+		WHERE Movie.Type = #{genre};
 	</select>
     
 </mapper>

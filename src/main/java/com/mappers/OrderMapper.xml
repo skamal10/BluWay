@@ -7,24 +7,69 @@
     
     <resultMap id="result" type="Order">
         <result property="id" column="Id"/>
-        
+        <result property ="customerId" column ="CustomerId"/> 
+         <result property ="genre" column ="Type"/> 
         <result property ="dateTime" column ="DateTime"/>
 		 <result property ="movieName" column ="Name"/>  
-		 <result property="movieId" column="Id"/>   
+		 <result property="movieId" column="MovieId"/>   
         <result property="returnDate" column="ReturnDate"/>   
           <result property="movieRating" column="MovieRating"/>  
     </resultMap>
     
-
+	<resultMap id="subscription_type" type="AccountTypeLK">
+		<result property="accountType_LK" column="Account_TypeLK"/>
+		<result property="price" column="Price"/>
+		<result property="monthly_movies" column="monthly_movies"/>
+		<result property="order_movies" column="order_movies"/>
+	 </resultMap>
    
    
    <select id="selectAll" resultMap="result">
         SELECT * FROM Orders;
     </select>
+    
+    <select id="selectSubscriptionsByMonth" resultType="Integer">
+    	SELECT COUNT(*) FROM Account
+    	WHERE month(DateOpened)= #{month}
+    	AND AccountTypeLK= #{type};
+    </select>
+    
+    <select id="selectSubscriptionsTotal" resultType="Integer">
+    	SELECT COUNT(*) FROM Account
+    	WHERE AccountTypeLK= #{type};
+    </select>
+    
+    <select id="selectOrdersByGenre" resultMap = "result">
+    	SELECT Orders.DateTime, Orders.ReturnDate, Orders.Id, Movie.Name, Movie.Type, Movie.Id AS MovieId,
+    	 Rental.MovieRating, Account.Customer AS CustomerId
+    	 From Rental
+    	 INNER JOIN Orders
+    	 ON Rental.OrderId = Orders.Id
+    	 Inner JOIN Movie
+    	 ON Movie.Id = Rental.MovieId
+    	 Inner JOIN Account
+    	 ON Rental.AccountId = Account.Id
+    	 WHERE Type = #{genre};
+    	 
+    	 
+    </select>
+    
+    <select id="selectOrdersByMovie" resultMap = "result">
+    	SELECT Orders.DateTime, Orders.ReturnDate, Orders.Id, Movie.Name, Movie.Type, Movie.Id AS MovieId,
+    	 Rental.MovieRating, Account.Customer AS CustomerId
+    	 From Rental
+    	 INNER JOIN Orders
+    	 ON Rental.OrderId = Orders.Id
+    	 Inner JOIN Movie
+    	 ON Movie.Id = Rental.MovieId
+    	 Inner JOIN Account
+    	 ON Rental.AccountId = Account.Id
+    	 WHERE Movie.Id = #{movieId};
+    </select>
         
     <select id="pastOrders" resultMap="result">
     
-SELECT Orders.DateTime , Orders.Id, Movie.Name, Movie.Id, Rental.MovieRating
+SELECT Orders.DateTime , Orders.Id, Movie.Name, Movie.Id AS MovieId, Rental.MovieRating
     FROM Account
     INNER JOIN Rental
     ON Account.Id = Rental.AccountId
@@ -32,10 +77,14 @@ SELECT Orders.DateTime , Orders.Id, Movie.Name, Movie.Id, Rental.MovieRating
     ON Rental.MovieId = Movie.Id
     INNER JOIN Orders
     ON Rental.OrderId= Orders.Id
-    WHERE Account.Id = 1
+    WHERE Account.Id = #{id}
     
     
     
+    </select>
+    
+    <select id="account_subscriptions" resultMap = "subscription_type">
+    SELECT * FROM Account_Type_LK;
     </select>
     
     <update id="addRating">

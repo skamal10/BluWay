@@ -7,7 +7,9 @@ public class Order {
 	private Date dateTime;
 	private int id;
 	private String movieName;
+	private String genre;
 	private int customerId;
+	private String customerName;
 	private Date returnDate;
 	private int movieId;
 	private int movieRating;
@@ -43,6 +45,19 @@ public class Order {
 	}
 	public void setMovieName(String movieName) {
 		this.movieName = movieName;
+	}
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	public int getCustomerId() {
 		return customerId;

@@ -1,6 +1,7 @@
 package com.mappers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -36,6 +37,7 @@ public interface MovieMapper {
 	  public List<Movie> selectPersonalizedList(@Param("customerId")Integer customerId);
 	  public List<Movie> actorAppearedIn(@Param("actorId")Integer actorId);
 	  public List<Movie> selectBestSellers();
-
+	  public Integer selectGenreRevenue(@Param("genre")String genre, @Param("asOfDate")Date asOfDate);
+	  public Integer selectGenreTotal(@Param("genre")String genre);
 	  
 }

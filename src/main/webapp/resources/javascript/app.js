@@ -1,6 +1,5 @@
 'use strict';
-var app = angular.module('bluWay',['ngRoute','ngAnimate','ngMaterial', 'ui.bootstrap']);
-
+var app = angular.module('bluWay',['ngRoute','ngAnimate','ngMaterial', 'ui.bootstrap','ng-fusioncharts']);
 app.config(['$routeProvider', function($routeProvider){
 
 	$routeProvider
@@ -24,7 +23,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/actor',
 	    controller:  'ActorCtrl'
 	})
-	.when('/order/:id', {
+	.when('/order/:id?', {
 	    templateUrl: 'template/orderPage',
 	    controller:  'OrderPageCtrl'
 	})
@@ -36,15 +35,38 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieStats',
 	    controller:  'MovieStatsCtrl'
 	})
+
 	.when('/shoppingCart/', {
 	    templateUrl: 'template/shoppingCart',
 	    controller:  'ShoppingCartCtrl'
 	})
-	
-	
+	.when('/account-stats/', {
+	    templateUrl: 'template/accountStats',
+	    controller:  'AccountStatsCtrl'
+	})
+	.when('/login/', {
+	    templateUrl: 'template/loginTest',
+	    controller:  'LoginCtrl'
+	})
 	.otherwise({
 	    redirectTo: '/'
 	});
-	 }
-	 ]);
+	 }]);
 
+app.run(function($rootScope, $http,$location) {
+	if(!$rootScope.currentUser){
+		$http({
+	          method  : 'GET',
+	          url     : 'getLoggedInUser'
+	         })
+	          .success(function(data) {
+	          		if(data){
+	          			$rootScope.currentUser = data;
+	          		}
+	          });
+	}
+});
+	
+	
+	
+	
