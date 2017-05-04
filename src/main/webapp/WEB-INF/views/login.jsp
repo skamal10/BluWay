@@ -55,7 +55,7 @@ window.onclick = function(event) {
 	<br>
 	
 	<div class= "buttonGroup">
-	<button ng-show = "!signUpMode" type="button" class="btn btn-primary btn-block">Login</button>
+	<button ng-show = "!signUpMode" type="button" class="btn btn-primary btn-block" ng-click="login()">Login</button>
 	<button ng-show = "signUpMode" type="button" class="btn btn-primary btn-block">Sign-up</button>
 	
 	</div>

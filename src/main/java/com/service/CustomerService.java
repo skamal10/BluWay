@@ -89,11 +89,12 @@ public class CustomerService {
 	  
 	  public int updateCustomerInfo(Customer customer){
 		  
-		  System.out.println("CCN: "+customer.getCreditCardNumber()+" Plan "+ customer.getPlan());
 		  int sucess = customerMapper.updateCustomerInfo(customer);
 		  	sucess = customerMapper.updateAccountInfo(customer);
 		  	sucess = customerMapper.updatePersonInfo(customer);
 		  return sucess;
+		  
+	  }
 		  
 	  public Integer getCustomerByAccount(Integer accountId){
 		  return customerMapper.selectByAccount(accountId);
