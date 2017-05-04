@@ -62,6 +62,7 @@ public class EmployeeController {
 	@RequestMapping(value="employee/login", method = RequestMethod.POST)
 	 public @ResponseBody Employee getEmployee(@RequestBody Employee employee) {
 		Employee test = employeeService.getEmployeeByID(employee.getSSN(), employee.getPassword());
+		loggedInUser = test;
 		return test;
 		
 	}

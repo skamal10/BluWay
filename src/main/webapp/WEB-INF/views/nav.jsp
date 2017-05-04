@@ -29,7 +29,7 @@
       <ul class="nav navbar-nav navbar-right">
       <li><a href="#/shoppingCart" style=color:white>Cart</a></li>
       
-        <li class="dropdown" ng-show="root.currentUser.Type == 'Employee'">
+        <li class="dropdown">
           <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=color:white>Utilities <span class="caret"></span></a>
           <ul  class="dropdown-menu">
             <li><a href="#/newmovie">Add Movie</a></li>

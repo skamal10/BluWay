@@ -91,9 +91,8 @@ window.onclick = function(event) {
 	<div class= "buttonGroup">
 	<button ng-show = "!signUpMode" type="button" class="btn btn-primary btn-block" ng-click="login()">Login</button>
 	<button ng-show = "signUpMode" type="button" class="btn btn-primary btn-block" ng-click="register()">Sign-up</button>
-	
 	</div>
-	
+	<h2><a href="#/employeeLogin">Click here to sign in as an employee</a></h2>
 	<br>
 	<br>
 	

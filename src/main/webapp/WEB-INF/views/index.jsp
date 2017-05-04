@@ -39,6 +39,7 @@
 <script src="resources/javascript/controllers/AccountStatsCtrl.js"></script>
 <script src="resources/javascript/controllers/LoginCtrl.js"></script>
   <script src="resources/javascript/controllers/NavBarCtrl.js"></script>
+    <script src="resources/javascript/controllers/EmployeeLogin.js"></script>
   <title>BluWay</title>
 </head>
  <body  ng-app="bluWay">

@@ -25,6 +25,7 @@
 	          .success(function(data) {
 	          		if(data!=null){
 	          			$rootScope.currentUser = data;
+	          			$rootScope.currentUser.Type = 'Customer';
 	          			$location.path('/');
 	          		}
 	          });

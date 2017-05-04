@@ -57,7 +57,8 @@ app.config(['$routeProvider', function($routeProvider){
 		 controller: 'LoginCtrl'
 	})
 	.when('/employeeLogin', {
-	    templateUrl: 'template/employeeLogin'
+	    templateUrl: 'template/employeeLogin',
+	    controller: 'EmployeeLogin'
 	})
 	.otherwise({
 	    redirectTo: '/'
@@ -75,19 +76,6 @@ app.run(function($rootScope, $http,$location) {
 	          		if(data){
 	          			$rootScope.currentUser = data;
 	          			$rootScope.currentUser.Type = 'Customer';
-	          		}
-	          		else{
-	          			$http({
-	          	          method  : 'GET',
-	          	          url     : 'employee/current'
-	          	         })
-	          	          .success(function(data) {
-	          	          		if(data){
-	          	          		$rootScope.currentUser = data;
-	          	          		$rootScope.currentUser.Type = 'Employee';
-	          	          		
-	          	          		}
-	          	          });
 	          		}
 	          });
 	}
