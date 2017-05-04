@@ -19,7 +19,7 @@
 </div>
 </div>
  
- <div class="container">
+ <div class="container"  style="height: 100%">
  
   <div ng-repeat = "movies in movieQ" >
             

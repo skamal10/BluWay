@@ -56,6 +56,10 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/login',
 		 controller: 'LoginCtrl'
 	})
+		.when('/search', {
+	    templateUrl: 'template/search',
+		 controller: 'SearchCtrl'
+	})
 	.otherwise({
 	    redirectTo: '/'
 	});

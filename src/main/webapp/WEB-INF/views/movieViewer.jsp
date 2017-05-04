@@ -1,5 +1,6 @@
 <div class="jumbotron text-center">
   <h1>{{movie.name}}</h1>
+  
 
 </div>
 
