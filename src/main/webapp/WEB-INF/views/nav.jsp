@@ -32,6 +32,7 @@
           <ul  class="dropdown-menu">
             <li><a href="#/newmovie">Add Movie</a></li>
             <li><a href="#/movie-stats">Movie Statistics</a></li>
+            <li><a href="#/account-stats">Account Statistics</a></li>
           </ul>
         </li>
         <li class="dropdown">

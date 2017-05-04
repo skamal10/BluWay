@@ -1,13 +1,6 @@
 'use strict';
 
-app.controller('OrderPageCtrl', function ($scope,$http, $routeParams) {
-	  
-	$scope.accountId= $routeParams.Id;
-	
-	$scope.loggedInAccount = 1;
-	$scope.loggedInCustomer= 111111111;
-	$scope.accountId= $routeParams.accountId;
-	
+app.controller('OrderPageCtrl', function ($scope,$http, $routeParams,$rootScope) {
 	
 	$scope.submitRating= function(order){
 		$http({
@@ -17,23 +10,24 @@ app.controller('OrderPageCtrl', function ($scope,$http, $routeParams) {
 	         })
 	         
 	}
-//	         
-//	         $scope.submitAvgRating= function(movieId){
-//		$http({
-//	          method  : 'POST',
-//	          url     : 'order/updateAvgRating/'+$scope.submitAvgRating,
-//	          data:		 {movieId : 'movieId'}
-//	        	  
-//	         })
-//	         
-//	}
-//	
-//	
+	
+	var loadCustomerByAccount = function(){
+		$http({
+	          method  : 'GET',
+	          url     : 'customer/getCustomerByAccount/'+$scope.accountId
+	         })
+	         .success(function(data) {
+	        	  if(data!=null){
+		        		 $scope.customerId = data;
+		        		 loadOrder();
+		        	  }
+		          });      
+	}
 	
 	var loadOrder = function(){
 		$http({
 	          method  : 'GET',
-	          url     : 'order/pastOrders/1'
+	          url     : 'order/pastOrders/'+ $scope.accountId
 	         })
 	         .success(function(data) {
 	        	  if(data!=null){
@@ -50,38 +44,29 @@ app.controller('OrderPageCtrl', function ($scope,$http, $routeParams) {
 		
 		$http({
 	          method  : 'GET',
-	          url     : '/customer/111111111'
+	          url     : '/customer/'+ $scope.customerId
 	         })
 	         .success(function(data) {
 	        	  if(data!=null){
 		        		 $scope.customer = data;  
-		        		
-		        		console.log($scope.customer);
 		        	  }
 		        
 		        	  
 		        	  
-		          });
-		
-	
-//		$http({
-//	          method  : 'GET',
-//	          url     : '/rental/movieRating/1'
-//	         })
-//	         .success(function(data) {
-//	        	  if(data!=null){
-//		        		 $scope.order = data;  
-//		        		
-//		        		console.log($scope.order);
-//		        	  }
-//		        
-//		        	  
-//		        	  
-//		          });
-//	         
+		          });      
 	         
 	}
 	
-	loadOrder();
+	if($routeParams.id){
+		$scope.accountId = $routeParams.Id;
+		loadCustomerByAccount();
+		
+	}
+	else{
+		$scope.accountId = $rootScope.currentUser.accountId;
+		$scope.customerId= $rootScope.currentUser.ssn;
+		loadOrder();
+	}
+	
 	
 });

@@ -23,6 +23,17 @@ public class CustomerService {
 		  
 	  }
 	  
+	  public Customer loginService(Customer customer){
+		  Customer loginCustomer = customerMapper.login(customer.getEmail());
+		  if(loginCustomer!=null && loginCustomer.getPassword().equals(customer.getPassword())){
+			  return loginCustomer;
+		  }
+		  else{
+			  return null;
+		  }
+		  
+	  }
+	  
 	  public List<Customer> getAllCustomers(){
 		  List <Customer> customer= customerMapper.selectAll();
 		  return customer;
@@ -74,6 +85,10 @@ public class CustomerService {
 	  public List<Movie> customerQueue(int id){
 		  List<Movie> movie= customerMapper.customerQueue(id);
 		  return movie;
+	  }
+	  
+	  public Integer getCustomerByAccount(Integer accountId){
+		  return customerMapper.selectByAccount(accountId);
 	  }
 	  
 	  

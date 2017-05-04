@@ -1,13 +1,13 @@
 'use strict';
 
-app.controller('MovieQCtrl', function ($scope,$http, $routeParams) {
+app.controller('MovieQCtrl', function ($scope,$http, $routeParams, $rootScope) {
 	
-	$scope.accountId= $routeParams.Id;
+	$scope.accountId= $rootScope.currentUser.accountId;
 	
 	var loadMovieQueue = function(){
 		$http({
 	        method  : 'GET',
-	        url     : '/movie/queue/1',
+	        url     : '/movie/queue/'+$scope.accountId,
 	       })
 	        .success(function(data) {
 	        		$scope.movieQ = data.slice();

@@ -6,12 +6,32 @@ public class Customer extends Person {
 	private String email;
 	private int creditCardNumber;
 	private int rating;
+	private String password;
+	private Integer accountId;
+	private String account_type;
 
 	
-	
+	public Integer getAccountId(){
+		return accountId;
+	}
+	public void setAccountId(Integer accountId){
+		this.accountId= accountId;
+	}
 
+	public String getAccount_type() {
+		return account_type;
+	}
+	public void setAccount_type(String account_type) {
+		this.account_type = account_type;
+	}
 	public String getEmail() {
 		return email;
+	}
+	public String getPassword(){
+		return password;
+	}
+	public void setPassword(String password){
+		this.password= password;
 	}
 
 	public void setEmail(String email) {
