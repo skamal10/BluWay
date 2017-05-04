@@ -11,7 +11,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieViewer',
 	    controller:  'MovieViewCtrl'
 	})
-	.when('/queue/:id', {
+	.when('/queue/', {
 	    templateUrl: 'template/movieQ',
 	    controller:  'MovieQCtrl'
 	})
@@ -36,7 +36,7 @@ app.config(['$routeProvider', function($routeProvider){
 	    controller:  'MovieStatsCtrl'
 	})
 
-	.when('/shoppingCart/', {
+	.when('/shoppingCart/:id?', {
 	    templateUrl: 'template/shoppingCart',
 	    controller:  'ShoppingCartCtrl'
 	})
@@ -56,13 +56,20 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/login',
 		 controller: 'LoginCtrl'
 	})
+<<<<<<< HEAD
 		.when('/search', {
 	    templateUrl: 'template/search',
 		 controller: 'SearchCtrl'
+=======
+	.when('/employeeLogin', {
+	    templateUrl: 'template/employeeLogin',
+	    controller: 'EmployeeLogin'
+>>>>>>> branch 'master' of https://github.com/skamal10/BluWay.git
 	})
 	.otherwise({
 	    redirectTo: '/'
 	});
+	
 	 }]);
 
 app.run(function($rootScope, $http,$location) {
@@ -74,6 +81,7 @@ app.run(function($rootScope, $http,$location) {
 	          .success(function(data) {
 	          		if(data){
 	          			$rootScope.currentUser = data;
+	          			$rootScope.currentUser.Type = 'Customer';
 	          		}
 	          });
 	}

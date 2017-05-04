@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <div  >
+=======
+
+<div>
+>>>>>>> branch 'master' of https://github.com/skamal10/BluWay.git
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   
 

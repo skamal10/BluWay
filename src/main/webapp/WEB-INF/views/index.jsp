@@ -38,11 +38,16 @@
 <script src="resources/javascript/controllers/ShoppingCartCtrl.js"></script>
 <script src="resources/javascript/controllers/AccountStatsCtrl.js"></script>
 <script src="resources/javascript/controllers/LoginCtrl.js"></script>
+<<<<<<< HEAD
 <script src="resources/javascript/controllers/SearchCtrl.js"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/v2.3.8/angular-strap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/v2.3.8/angular-strap.tpl.min.js"></script>
+=======
+  <script src="resources/javascript/controllers/NavBarCtrl.js"></script>
+    <script src="resources/javascript/controllers/EmployeeLogin.js"></script>
+>>>>>>> branch 'master' of https://github.com/skamal10/BluWay.git
   <title>BluWay</title>
 </head>
  <body  ng-app="bluWay">
