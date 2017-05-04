@@ -17,6 +17,30 @@ app.controller('MovieViewCtrl', function ($scope,$http, $routeParams, $uibModal)
 	    {stateOff: 'glyphicon-off'}
 	  ];
 	
+$scope.addToQueue= function(movie){
+	
+		$http({
+	          method  : 'POST',
+	          url     : '/movie/addToQueue',
+	          data	  : movie
+	         })
+	                
+	}
+
+
+
+$scope.addToCart= function(movie){
+	
+	$http({
+          method  : 'POST',
+          url     : '/movie/addToCart',
+          data	  : movie
+         })
+                
+}
+
+
+
 
 	
 	$scope.toggleEditMode = function(){

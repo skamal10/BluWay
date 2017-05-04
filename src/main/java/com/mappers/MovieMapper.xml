@@ -52,6 +52,14 @@
 	     ON MovieQ.MovieId = Movie.Id
 	     WHERE AccountId = #{id}
      </select>
+     
+         <select id="selectShoppingCart" resultMap="result">
+	     SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies
+	     FROM ShoppingCart
+	     INNER JOIN Movie
+	     ON ShoppingCart.MovieId = Movie.Id
+	     WHERE AccountId = #{id}
+     </select>
     
     <update id="updateByPrimaryKey">
     	UPDATE Movie
@@ -195,6 +203,34 @@
 	    INSERT INTO Movie(Name,Type,Rating,DistrFee,NumCopies)
 	    VALUES(#{movie.name}, #{movie.type}, #{movie.rating}, #{movie.distributionFee}, #{movie.numCopies});
     </insert>
+    
+    
+        <insert id="addToQueue" keyProperty="movie.id" useGeneratedKeys="true">
+	    INSERT INTO MovieQ(MovieId, AccountId)
+	    VALUES(#{movie.id}, 1);
+    </insert>
+    
+    
+      <insert id="addToCart" keyProperty="movie.id" useGeneratedKeys="true">
+	    INSERT INTO ShoppingCart(MovieId, AccountId)
+	    VALUES(#{movie.id}, 1);
+    </insert>
+    
+    <delete id="deleteFromQueue">
+    DELETE FROM MovieQ
+        WHERE MovieId= #{movie.id} 
+        AND AccountId = 1;
+    
+    </delete>
+    
+        
+    <delete id="deleteFromShoppingCart">
+    DELETE FROM ShoppingCart
+        WHERE MovieId= #{movie.id} 
+        AND AccountId = 1;
+    
+    </delete>
+    
     
 	<select id="actorAppearedIn" resultMap="result">    
 		SELECT Movie.id ,Movie.Name, Movie.Type, Movie.Rating, Movie.DistrFee, Movie.NumCopies FROM Movie 

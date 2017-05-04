@@ -1,23 +1,22 @@
 
- <h1>Welcome {{customer.firstName}}!</h1>
+ 
+<div class="container">
+<h1>My Past Orders and Ratings</h1>
     <div class="form-group">
     &nbsp;
 </div>
- <p> Here is a summary of your past movie orders and ratings
- </p>
+ 
  
       <div class="form-group">
     &nbsp;
 </div>
-<div class="container">
-
  
 
 	<div ng-repeat = "order in orders"> 
 	
 	 <div class="row">
   
-	  <div class="col-sm-4">
+ <div class="col-xs-3">
 	
 	<img ng-src="resources/images/{{order.movieId}}.jpg" alt="Description" class="img-responsive" />
 	     <div class="form-group">
@@ -25,7 +24,7 @@
 </div>
 </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-5">
   
   	<h4>  {{order.movieName}}</h4>
    	<h4>Order Number: {{order.id}}</h4>
@@ -43,7 +42,7 @@
    	 
    	  
   	<h4>Rating</h4>
-    <uib-rating ng-model="order.movieRating" max=5 read-only="isReadonly" on-hover="hoveringOver(data)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+    <uib-rating ng-model="order.movieRating" max=5 read-only="isReadonly" on-hover="hoveringOver(data)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating" style= color:gold></uib-rating>
   	
   	
   

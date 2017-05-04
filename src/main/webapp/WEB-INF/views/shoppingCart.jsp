@@ -1,5 +1,5 @@
-  <div class="qpage" style="background-color: black">
-   <div class="container" >
+  <div class="cart" style="background-color: black" >
+   <div class="container"  >
 <p class="white">
 
 
@@ -7,7 +7,7 @@
        
         <div class="col-sm-6">
 
-<h1 style=color:white>My Movie Queue</h1>
+<h1 style=color:white>My Shopping Cart</h1>
     <div class="form-group">
     &nbsp;
 </div>
@@ -19,9 +19,9 @@
 </div>
 </div>
  
- <div class="container">
+ <div class="container" style="height: 100%">
  
-  <div ng-repeat = "movies in movieQ" >
+  <div ng-repeat = "movies in shoppingCart" >
             
         <div class="row"">
        
@@ -51,8 +51,8 @@
   <div class="col-xs-6">
   
                 <div  class="text-right">
-                    <button type="submit" class="btn btn-success" ng-click="addToShoppingCart(movies)">Add to Cart</button>
-                      <button type="submit" class="btn btn-danger" ng-click="deleteFromQueue(movies)"> Delete</button>
+                   
+                      <button type="submit" class="btn btn-danger" ng-click="deleteFromShoppingCart(movies)"> Delete</button>
         </div>
 </div>   
         </div>
@@ -60,5 +60,9 @@
          
          </p>
            </div>
+           <div  class="text-center">
+            <button type="submit" class="btn btn-success">Order</button>
+              </div>
+            
                </div>
                      </div>

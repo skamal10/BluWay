@@ -35,6 +35,11 @@ app.config(['$routeProvider', function($routeProvider){
 	    templateUrl: 'template/movieStats',
 	    controller:  'MovieStatsCtrl'
 	})
+
+	.when('/shoppingCart/', {
+	    templateUrl: 'template/shoppingCart',
+	    controller:  'ShoppingCartCtrl'
+	})
 	.when('/account-stats/', {
 	    templateUrl: 'template/accountStats',
 	    controller:  'AccountStatsCtrl'

@@ -76,6 +76,40 @@ import util.Constants.MovieErrors;
 			
 		}
 		
+		
+		@RequestMapping(value="movie/addToQueue", method = RequestMethod.POST)
+		 public @ResponseBody Long addToQueue(@RequestBody Movie newMovie) {
+				
+			return movieService.addToQueue(newMovie);
+			
+			
+		}
+		
+		
+		
+		@RequestMapping(value="movie/addToCart", method = RequestMethod.POST)
+		 public @ResponseBody Long addToCart(@RequestBody Movie newMovie) {
+				
+			return movieService.addToCart(newMovie);
+			
+		}
+		
+		@RequestMapping(value="movie/deleteFromQueue", method = RequestMethod.POST)
+		 public @ResponseBody Long deleteFromQueue(@RequestBody Movie newMovie) {
+				
+			return movieService.deleteFromQueue(newMovie);
+			
+		}
+		
+		@RequestMapping(value="movie/deleteFromShoppingCart", method = RequestMethod.POST)
+		 public @ResponseBody Long deleteFromShoppingCart(@RequestBody Movie newMovie) {
+				
+			return movieService.deleteFromShoppingCart(newMovie);
+			
+		}
+		
+		
+		
 		@RequestMapping(value="movie/type/{genre}", method = RequestMethod.GET)
 		 public @ResponseBody List<Movie> getMovieByGenre(@PathVariable("genre") String genre) {
 			try{
@@ -101,6 +135,22 @@ import util.Constants.MovieErrors;
 			}
 			
 		}
+		
+		
+		@RequestMapping(value="movie/shoppingCart/{accountId}", method = RequestMethod.GET)
+		 public @ResponseBody List<Movie> getShoppingCart(@PathVariable("accountId") Integer accountId) {
+			try{
+				return movieService.getShoppingCart(accountId);
+				
+			}
+			catch(Exception e){
+				System.out.println(e); // Replace this with a logger.
+				return null;
+			}
+			
+		}
+		
+		
 		
 		@RequestMapping(value="movie/homescreen", method = RequestMethod.GET)
 		 public @ResponseBody List<Integer> getHomeScreenMovies() {
