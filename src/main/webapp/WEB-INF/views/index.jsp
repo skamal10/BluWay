@@ -19,6 +19,9 @@
 <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.2.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src= "resources/javascript/angular-fusioncharts.min.js" ></script>
+<script src= "resources/javascript/fusioncharts.js" ></script>
+<script src= "resources/javascript/fusioncharts.charts.js" ></script>
 
 
 <script src="resources/javascript/app.js"></script>
@@ -31,6 +34,8 @@
 <script src="resources/javascript/controllers/NewMovieCtrl.js"></script>
 <script src="resources/javascript/controllers/ActorModalCtrl.js"></script>
 <script src="resources/javascript/controllers/MovieStatsCtrl.js"></script>
+<script src="resources/javascript/controllers/AccountStatsCtrl.js"></script>
+<script src="resources/javascript/controllers/LoginCtrl.js"></script>
 
   <title>BluWay</title>
 </head>
