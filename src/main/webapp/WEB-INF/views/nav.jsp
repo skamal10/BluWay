@@ -27,15 +27,17 @@
         <li><a href="#/queue/1" style=color:white>Manage Queue</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      <li><a href="#/shoppingCart/1" style=color:white>Cart</a></li>
+      
         <li class="dropdown">
-          <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilities <span class="caret"></span></a>
+          <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=color:white>Utilities <span class="caret"></span></a>
           <ul  class="dropdown-menu">
             <li><a href="#/newmovie">Add Movie</a></li>
             <li><a href="#/movie-stats">Movie Statistics</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+          <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=color:white>Account <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#/">Your Account</a></li>
             <li><a href="#/">Help Center</a></li>

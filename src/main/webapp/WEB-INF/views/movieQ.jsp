@@ -51,7 +51,7 @@
   <div class="col-xs-6">
   
                 <div  class="text-right">
-                    <button type="submit" class="btn btn-success">Order</button>
+                    <button type="submit" class="btn btn-success" ng-click="addToShoppingCart(movies)">Add to Cart</button>
                       <button type="submit" class="btn btn-danger" ng-click="deleteFromQueue(movies)"> Delete</button>
         </div>
 </div>   
